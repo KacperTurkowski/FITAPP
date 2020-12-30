@@ -28,9 +28,7 @@ namespace FITAPP
             this.Hide();
             //po wpisanniu loginu i hasła main się pokaże
             InitializeComponent();
-            Grid panel = (Grid)grid.Children
-                .Cast<UIElement>()
-                .First(e => Grid.GetRow(e) == 12 && Grid.GetColumn(e) == 16);
+            panel = getPanel(grid);
             
             panel = new MainPage().drawGrid(panel);
             panel = new MainPage().drawComponent(panel);
@@ -41,6 +39,18 @@ namespace FITAPP
             Login oknologowania = new Login(this);
             oknologowania.Show();
             this.Hide();
+        }
+        private static Grid getPanel(Grid grid)
+        {
+            return (Grid)grid.Children
+                .Cast<UIElement>()
+                .First(e => Grid.GetRow(e) == 12 && Grid.GetColumn(e) == 16);
+        }
+        private void strona_glowna_Click(object sender, RoutedEventArgs e)
+        {
+            Grid panel = getPanel(grid);
+            panel = new MainPage().drawGrid(panel);
+            panel = new MainPage().drawComponent(panel);
         }
     }
 }
