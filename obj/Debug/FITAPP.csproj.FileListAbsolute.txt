@@ -1,0 +1,15 @@
+C:\Users\Kacper\source\repos\FITAPP\bin\Debug\FITAPP.exe.config
+C:\Users\Kacper\source\repos\FITAPP\bin\Debug\FITAPP.exe
+C:\Users\Kacper\source\repos\FITAPP\bin\Debug\FITAPP.pdb
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.csprojAssemblyReference.cache
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\MainWindow.g.cs
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\App.g.cs
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP_MarkupCompile.cache
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP_MarkupCompile.lref
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\MainWindow.baml
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.g.resources
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.Properties.Resources.resources
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.csproj.GenerateResource.cache
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.csproj.CoreCompileInputs.cache
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.exe
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.pdb
