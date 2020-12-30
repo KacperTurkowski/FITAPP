@@ -28,7 +28,14 @@ namespace FITAPP
             this.Hide();
             //po wpisanniu loginu i hasła main się pokaże
             InitializeComponent();
+            Grid panel = (Grid)grid.Children
+                .Cast<UIElement>()
+                .First(e => Grid.GetRow(e) == 12 && Grid.GetColumn(e) == 16);
+            
+            panel = new MainPage().drawGrid(panel);
+            panel = new MainPage().drawComponent(panel);
         }
+
         public void Log_out(object sender, RoutedEventArgs e)
         {
             Login oknologowania = new Login(this);
