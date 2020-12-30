@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FITAPP"
         mc:Ignorable="d"
+        Icon="C:\Users\Kacper\source\repos\FITAPP\drzewo_widelec-removebg-preview.ico"
         Title="FitnessApp" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -141,7 +142,7 @@
         </Grid.RowDefinitions>
         <Image x:Name="logo" Source="C:\Users\Kacper\source\repos\FITAPP/bic.png" Grid.Column='1' Grid.ColumnSpan="66" Grid.Row="1" Grid.RowSpan="10"/>
         <Button x:Name="moje_konto" Content="Moje Konto" Grid.Column="68" Grid.ColumnSpan="11" Grid.Row="1" Grid.RowSpan="4"/>
-        <Button x:Name="wyloguj" Content="Wyloguj" Grid.Column="68" Grid.ColumnSpan="11" Grid.Row="7" Grid.RowSpan="4"/>
+        <Button x:Name="wyloguj" Click="Log_out" Content="Wyloguj" Grid.Column="68" Grid.ColumnSpan="11" Grid.Row="7" Grid.RowSpan="4"/>
         <Button x:Name="strona_glowna" Content="Strona Główna" Grid.Column="1" Grid.ColumnSpan="14" Grid.Row="13" Grid.RowSpan="6"/>
         <Button x:Name="diety" Content="Diety" Grid.Column="1" Grid.ColumnSpan="14" Grid.Row="20" Grid.RowSpan="6"/>
         <Button x:Name="posilki" Content="Posiłki" Grid.Column="1" Grid.ColumnSpan="14" Grid.Row="27" Grid.RowSpan="6"/>

@@ -13,3 +13,5 @@ C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.csproj.GenerateResource.cac
 C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.csproj.CoreCompileInputs.cache
 C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.exe
 C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.pdb
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\Login.g.cs
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\Login.baml
