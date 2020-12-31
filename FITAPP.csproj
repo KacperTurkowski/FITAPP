@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Diet.cs" />
+    <Compile Include="DietPage.cs" />
     <Compile Include="Dish.cs" />
     <Compile Include="Exercise.cs" />
     <Compile Include="Trening.cs" />

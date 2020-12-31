@@ -52,5 +52,12 @@ namespace FITAPP
             panel = new MainPage().drawGrid(panel);
             panel = new MainPage().drawComponent(panel);
         }
+
+        private void diety_Click(object sender, RoutedEventArgs e)
+        {
+            Grid panel = getPanel(grid);
+            panel = new DietPage().drawGrid(panel);
+            panel = new DietPage().drawComponent(panel);
+        }
     }
 }
