@@ -37,5 +37,27 @@ namespace FITAPP
 
             return button;
         }
+        public static TextBox getTextBox(string name, int row, int rowspan, int column, int columnspan)
+        {
+            TextBox textbox = new TextBox();
+
+            textbox.Name = name;
+            Grid.SetRow(textbox, row);
+            Grid.SetColumn(textbox, column);
+            Grid.SetColumnSpan(textbox, columnspan);
+            Grid.SetRowSpan(textbox, rowspan);
+
+            return textbox;
+        }
+        public static ListBox getListBox(string name, int row, int rowspan, int column, int columnspan)
+        {
+            ListBox listbox = new ListBox();
+            listbox.Name = name;
+            Grid.SetColumn(listbox, column);
+            Grid.SetRow(listbox, row);
+            Grid.SetColumnSpan(listbox, columnspan);
+            Grid.SetRowSpan(listbox, rowspan);
+            return listbox;
+        }
     }
 }

@@ -22,15 +22,11 @@ namespace FITAPP
             Label trainingName = Helper.getLabel("nazwa_treningu", DataBase.todayT.name,3,3,0,16);
             grid.Children.Add(trainingName);
 
-            ListBox listBox = new ListBox();
+            ListBox listBox = Helper.getListBox("treningi", 6, 8, 1, 14);
             foreach(Exercise exercise in DataBase.todayT.exercises)
             {
                 listBox.Items.Add(exercise.name + "    " + exercise.amount.ToString());
             }
-            Grid.SetColumn(listBox, 1);
-            Grid.SetRow(listBox, 6);
-            Grid.SetColumnSpan(listBox, 14);
-            Grid.SetRowSpan(listBox, 8);
             grid.Children.Add(listBox);
             //prawa strona
 
@@ -40,15 +36,11 @@ namespace FITAPP
             Button button2 = Helper.getButton("otworz_dzisiejsza_diete", "Otwórz Dzisiejszą Dietę", 15, 3, 25, 6);
             grid.Children.Add(button2);
 
-            ListBox listBox2 = new ListBox();
+            ListBox listBox2 = Helper.getListBox("diety", 6, 8, 17, 14);
             foreach (Dish dish in DataBase.todayD.dishes)
             {
                 listBox2.Items.Add(dish.name + "    " + dish.amount.ToString());
             }
-            Grid.SetColumn(listBox2, 17);
-            Grid.SetRow(listBox2, 6);
-            Grid.SetColumnSpan(listBox2, 14);
-            Grid.SetRowSpan(listBox2, 8);
             grid.Children.Add(listBox2);
 
             return grid;

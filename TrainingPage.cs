@@ -19,6 +19,7 @@ namespace FITAPP
             Button dodaj_trening = Helper.getButton("dodaj_trening", "Dodaj Trening", 13, 2, 9, 6);
             grid.Children.Add(dodaj_trening);
             //tutaj listbox
+            
 
             //prawwa strona
 
