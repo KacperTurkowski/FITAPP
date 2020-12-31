@@ -147,7 +147,7 @@
         <Button x:Name="diety" Click ="diety_Click"  Content="Diety" Grid.Column="1" Grid.ColumnSpan="14" Grid.Row="20" Grid.RowSpan="6"/>
         <Button x:Name="posilki" Content="Posiłki" Grid.Column="1" Grid.ColumnSpan="14" Grid.Row="27" Grid.RowSpan="6"/>
         <Button x:Name="cwiczenia" Content="Ćwiczenia" Grid.Column="1" Grid.ColumnSpan="14" Grid.Row="34" Grid.RowSpan="6"/>
-        <Button x:Name="treningi" Content="Treningi" Grid.Column="1" Grid.ColumnSpan="14" Grid.Row="41" Grid.RowSpan="6" />
+        <Button x:Name="treningi" Click="treningi_Click" Content="Treningi" Grid.Column="1" Grid.ColumnSpan="14" Grid.Row="41" Grid.RowSpan="6" />
         <Grid x:Name="panel" Grid.Column="16" Grid.ColumnSpan="63" Grid.Row="12" Grid.RowSpan="36" Background="WhiteSmoke"/>
     </Grid> 
 </Window>

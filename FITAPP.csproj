@@ -64,6 +64,7 @@
     <Compile Include="DietPage.cs" />
     <Compile Include="Dish.cs" />
     <Compile Include="Exercise.cs" />
+    <Compile Include="TrainingPage.cs" />
     <Compile Include="Trening.cs" />
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
