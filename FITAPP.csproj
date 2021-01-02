@@ -65,6 +65,7 @@
     <Compile Include="DietPage.cs" />
     <Compile Include="Dish.cs" />
     <Compile Include="Exercise.cs" />
+    <Compile Include="Specific_dishPage.cs" />
     <Compile Include="Specific_exercisePage.cs" />
     <Compile Include="specific_trainingPage.cs" />
     <Compile Include="TrainingPage.cs" />

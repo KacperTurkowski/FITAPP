@@ -73,6 +73,7 @@ namespace FITAPP
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Name = name;
+            textBlock.Text = content;
             Grid.SetColumn(textBlock, column);
             Grid.SetRow(textBlock, row);
             Grid.SetColumnSpan(textBlock, columnspan);

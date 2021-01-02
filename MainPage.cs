@@ -69,7 +69,6 @@ namespace FITAPP
         }
         private void trening_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            //MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
             int index = listBox.SelectedIndex;
             Exercise exercise = DataBase.todayT.exercises[index];
             Specific_exercisePage page = new Specific_exercisePage(exercise);
@@ -78,7 +77,11 @@ namespace FITAPP
         }
         private void dieta_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
+            int index = listBox2.SelectedIndex;
+            Dish dish = DataBase.todayD.dishes[index];
+            Specific_dishPage page = new Specific_dishPage(dish);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
         }
         private void Otworz_dzisiejsza_diete_Click(object sender, RoutedEventArgs e)
         {

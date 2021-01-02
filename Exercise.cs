@@ -11,7 +11,7 @@ namespace FITAPP
     {
         public int amount;
         public string name;
-        public string description = "";
+        public string description = "opis ćwiczenia";
         public string image;
         public Exercise(string name, int amount)
         {

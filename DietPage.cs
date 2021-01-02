@@ -24,7 +24,7 @@ namespace FITAPP
             wyszukaj_diete.TextChanged += Wyszukaj_diete_TextChanged;
             grid.Children.Add(wyszukaj_diete);
 
-            ListBox diety = Helper.getListBox(DataBase.dishes,"diety", 5, 9, 1, 15);
+            ListBox diety = Helper.getListBox(DataBase.diets,"diety", 5, 9, 1, 15);
             diety.SelectionChanged += Diety_SelectionChanged;
             grid.Children.Add(diety);
 
@@ -39,7 +39,7 @@ namespace FITAPP
             Label polubione_diety = Helper.getLabel("polubione_diety", "Polubione Diety", 6, 3, 16, 16);
             grid.Children.Add(polubione_diety);
 
-            ListBox polubione_diety_listbox = Helper.getListBox(DataBase.dishes, "polubione_diety", 9, 8, 17, 15);
+            ListBox polubione_diety_listbox = Helper.getListBox(DataBase.likedDiets, "polubione_diety", 9, 8, 17, 15);
             polubione_diety_listbox.SelectionChanged += Polubione_diety_listbox_SelectionChanged;
             grid.Children.Add(polubione_diety_listbox);
 

@@ -6,14 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Image = System.Drawing.Image;
 
 namespace FITAPP
 {
     class TrainingPage : Parentpage
     {
+        ListBox polubione_treningi_listbox, treningi;
+        Grid grid;
         public override Grid drawComponent(Grid grid)
         {
+            this.grid = grid;
             //lewa strona
             Label dostepne_treningi = Helper.getLabel("dostepne_treningi", "Dostępne Treningi", 0, 3, 0, 16);
             grid.Children.Add(dostepne_treningi);
@@ -22,7 +26,7 @@ namespace FITAPP
             dodaj_trening.Click += Dodaj_trening_Click;
             grid.Children.Add(dodaj_trening);
 
-            ListBox treningi = Helper.getListBox(DataBase.exercises, "exercises", 5, 9, 1, 15);
+            treningi = Helper.getListBox(DataBase.trainings, "exercises", 5, 9, 1, 15);
             treningi.SelectionChanged += Treningi_SelectionChanged;
             grid.Children.Add(treningi);
 
@@ -31,30 +35,62 @@ namespace FITAPP
             Label label = Helper.getLabel("moj_aktualny_trening", "Mój aktualny trening",0,3,16,16);
             grid.Children.Add(label);
 
-            Label dzisiejszy_trening = Helper.getLabel("dzisiejszy_trening", "Dzisiejszy trening", 3, 2, 16, 16);
+            TextBlock dzisiejszy_trening = Helper.getTextBlock("dzisiejszy_trening", "Dzisiejszy trening", 3, 2, 16, 16);
+            dzisiejszy_trening.PreviewMouseDown += Dzisiejszy_trening_PreviewMouseDown;
+            dzisiejszy_trening.HorizontalAlignment = HorizontalAlignment.Center;
+            dzisiejszy_trening.VerticalAlignment = VerticalAlignment.Center;
+            dzisiejszy_trening.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(dzisiejszy_trening);
 
-            Label nastepny_trening = Helper.getLabel("nastepny_trening", "Następny Trening", 5, 2, 16, 16);
+            TextBlock nastepny_trening = Helper.getTextBlock("nastepny_trening", "Następny Trening", 5, 2, 16, 16);
+            nastepny_trening.PreviewMouseDown += Nastepny_trening_PreviewMouseDown;
+            nastepny_trening.HorizontalAlignment = HorizontalAlignment.Center;
+            nastepny_trening.VerticalAlignment = VerticalAlignment.Center;
+            nastepny_trening.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(nastepny_trening);
 
             Label polubione_treningi = Helper.getLabel("polubione_treningi", "Polubione Treningi", 7, 3, 16, 16);
             grid.Children.Add(polubione_treningi);
 
-            ListBox polubione_treningi_listbox= Helper.getListBox(DataBase.exercises, "polubione_trenigni_listbox", 10, 8, 17, 14);
+            polubione_treningi_listbox= Helper.getListBox(DataBase.likedTrainings, "polubione_trenigni_listbox", 10, 8, 17, 14);
             polubione_treningi_listbox.SelectionChanged += Polubione_treningi_listbox_SelectionChanged;
             grid.Children.Add(polubione_treningi_listbox);
 
             return grid;
         }
 
-        private void Polubione_treningi_listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Nastepny_trening_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie TrainingPage w metodzie \" Polubione_treningi_listbox_SelectionChanged\"");
+            Training training = DataBase.nextTraining;
+            Specific_trainingPage page = new Specific_trainingPage(training);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
+        }
+
+        private void Dzisiejszy_trening_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Training training = DataBase.todayT;
+            Specific_trainingPage page = new Specific_trainingPage(training);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
+        }
+
+         private void Polubione_treningi_listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = polubione_treningi_listbox.SelectedIndex;
+            Training training = DataBase.likedTrainings[index];
+            Specific_trainingPage page = new Specific_trainingPage(training);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
         }
 
         private void Treningi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie TrainingPage w metodzie \"Treningi_SelectionChanged\"");
+            int index = treningi.SelectedIndex;
+            Training training = DataBase.trainings[index];
+            Specific_trainingPage page = new Specific_trainingPage(training);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
         }
 
         private void Dodaj_trening_Click(object sender, RoutedEventArgs e)

@@ -17,6 +17,7 @@ namespace FITAPP
         public static List<Diet> diets;//lista diet
         public static List<Training> likedTrainings;
         public static List<Diet> likedDiets;
+        public static Training nextTraining;//następny trening
         static DataBase()//taki odpowiednik bloku statycznyego w Javie
         {
             passwords.Add("Kacper", "abc");
@@ -51,6 +52,8 @@ namespace FITAPP
 
             likedTrainings = trainings.GetRange(10, 5);
             likedDiets = diets.GetRange(10, 5);
+
+            nextTraining = new Training("Wydolnościowy", exercises.GetRange(25, 5));
         }
     }
 }

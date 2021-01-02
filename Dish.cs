@@ -8,13 +8,18 @@ namespace FITAPP
 {
     class Dish
     {
-        public string name;
         public int amount;
+        public string name;
+        public string recipe = "";
+        public string image;
+        public string ingredients = "";
         public Dish(string name, int amount)
         {
             this.name = name;
             this.amount = amount;
+            image = @"C:\Users\Kacper\source\repos\FITAPP\photo.png";
         }
+
         public override string ToString()
         {
             return name + "   " + amount;
