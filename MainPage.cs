@@ -69,7 +69,12 @@ namespace FITAPP
         }
         private void trening_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
+            //MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
+            int index = listBox.SelectedIndex;
+            Exercise exercise = DataBase.todayT.exercises[index];
+            Specific_exercisePage page = new Specific_exercisePage(exercise);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
         }
         private void dieta_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -84,7 +89,6 @@ namespace FITAPP
             Specific_trainingPage page = new Specific_trainingPage(DataBase.todayT);
             this.grid = page.drawGrid(grid);
             this.grid = page.drawComponent(grid);
-//            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
         }
     }
 }
