@@ -42,6 +42,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +65,7 @@
     <Compile Include="DietPage.cs" />
     <Compile Include="Dish.cs" />
     <Compile Include="Exercise.cs" />
+    <Compile Include="specific_trainingPage.cs" />
     <Compile Include="TrainingPage.cs" />
     <Compile Include="Trening.cs" />
     <Page Include="Login.xaml">

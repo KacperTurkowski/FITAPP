@@ -66,5 +66,20 @@ namespace FITAPP
             panel = new TrainingPage().drawGrid(panel);
             panel = new TrainingPage().drawComponent(panel);
         }
+
+        private void moje_konto_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainWindow w metodzie \"moje_konto_Click\"");
+        }
+
+        private void posilki_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainWindow w metodzie \"posilki_Click\"");
+        }
+
+        private void cwiczenia_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainWindow w metodzie \"cwiczenia_Click\"");
+        }
     }
 }

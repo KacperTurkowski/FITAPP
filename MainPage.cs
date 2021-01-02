@@ -10,41 +10,43 @@ namespace FITAPP
 {
     class MainPage: Parentpage
     {
+        ListBox listBox,listBox2;
+        Grid grid;
         public override Grid drawComponent(Grid grid)
         {
+            this.grid = grid;
             //lewa strona
             Label training = Helper.getLabel("dzisiejszy_trening","Dzisiejszy Trening",0,3,0,16);
             grid.Children.Add(training);
 
-            Button button = Helper.getButton("otworz_dzisiejszy_trening", "Otwórz Dzisiejszy Trening", 15, 3, 9, 6);
-            grid.Children.Add(button);
+            Button otworz_dzisiejszy_trening = Helper.getButton("otworz_dzisiejszy_trening", "Otwórz Dzisiejszy Trening", 15, 3, 9, 6);
+            otworz_dzisiejszy_trening.Click += otworz_dzisiejszy_trening_Click;
+            grid.Children.Add(otworz_dzisiejszy_trening);
 
             Label trainingName = Helper.getLabel("nazwa_treningu", DataBase.todayT.name,3,3,0,16);
             grid.Children.Add(trainingName);
 
-            ListBox listBox = Helper.getListBox("treningi", 6, 8, 1, 14);
-            foreach(Exercise exercise in DataBase.todayT.exercises)
-            {
-                listBox.Items.Add(exercise.name + "    " + exercise.amount.ToString());
-            }
+            listBox = Helper.getListBox(DataBase.todayT.exercises,"treningi", 6, 8, 1, 14);
+            listBox.SelectionChanged += trening_SelectedIndexChanged;
             grid.Children.Add(listBox);
             //prawa strona
 
             Label diet = Helper.getLabel("dzisiejsza_dieta", "Dzisiejsza Dieta", 0,3,16, 16);
             grid.Children.Add(diet);
 
-            Button button2 = Helper.getButton("otworz_dzisiejsza_diete", "Otwórz Dzisiejszą Dietę", 15, 3, 25, 6);
-            grid.Children.Add(button2);
+            Button otworz_dzisiejsza_diete = Helper.getButton("otworz_dzisiejsza_diete", "Otwórz Dzisiejszą Dietę", 15, 3, 25, 6);
+            otworz_dzisiejsza_diete.Click += Otworz_dzisiejsza_diete_Click;
+            grid.Children.Add(otworz_dzisiejsza_diete);
 
-            ListBox listBox2 = Helper.getListBox("diety", 6, 8, 17, 14);
-            foreach (Dish dish in DataBase.todayD.dishes)
-            {
-                listBox2.Items.Add(dish.name + "    " + dish.amount.ToString());
-            }
+            listBox2 = Helper.getListBox(DataBase.todayD.dishes, "diety", 6, 8, 17, 14);
+            listBox2.SelectionChanged += dieta_SelectedIndexChanged;
             grid.Children.Add(listBox2);
+
 
             return grid;
         }
+
+
 
         public override Grid drawGrid(Grid grid)
         {
@@ -65,6 +67,24 @@ namespace FITAPP
             }
             return grid;
         }
-
+        private void trening_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
+        }
+        private void dieta_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
+        }
+        private void Otworz_dzisiejsza_diete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
+        }
+        private void otworz_dzisiejszy_trening_Click(object sender, RoutedEventArgs e)
+        {
+            Specific_trainingPage page = new Specific_trainingPage(DataBase.todayT);
+            this.grid = page.drawGrid(grid);
+            this.grid = page.drawComponent(grid);
+//            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
+        }
     }
 }

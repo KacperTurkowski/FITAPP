@@ -15,5 +15,9 @@ namespace FITAPP
             this.name = name;
             this.dishes = dishes;
         }
+        public override string ToString()
+        {
+            return name +" ";
+        }
     }
 }
