@@ -14,42 +14,52 @@ namespace FITAPP
     class TrainingPage : Parentpage
     {
         ListBox polubione_treningi_listbox, treningi;
+        Label dostepne_treningi, moj_aktualny_trening, polubione_treningi;
+        Button dodaj_trening;
+        TextBlock dzisiejszy_trening, nastepny_trening;
         Grid grid;
+        List<Training> trainings;
+        TextBox searchTraining;
         public override Grid drawComponent(Grid grid)
         {
             this.grid = grid;
             //lewa strona
-            Label dostepne_treningi = Helper.getLabel("dostepne_treningi", "Dostępne Treningi", 0, 3, 0, 16);
+            dostepne_treningi = Helper.getLabel("dostepne_treningi", "Dostępne Treningi", 0, 3, 0, 16);
             grid.Children.Add(dostepne_treningi);
 
-            Button dodaj_trening = Helper.getButton("dodaj_trening", "Dodaj Trening", 15, 2, 9, 6);
+            dodaj_trening = Helper.getButton("dodaj_trening", "Dodaj Trening", 15, 2, 9, 6);
             dodaj_trening.Click += Dodaj_trening_Click;
             grid.Children.Add(dodaj_trening);
 
-            treningi = Helper.getListBox(DataBase.trainings, "exercises", 5, 9, 1, 15);
+            searchTraining = Helper.getTextBox("wyszukaj_trening", "", 3, 2, 1, 14);
+            searchTraining.TextChanged += SearchTraining_TextChanged;
+            grid.Children.Add(searchTraining);
+
+            trainings = DataBase.trainings;
+            treningi = Helper.getListBox(trainings, "exercises", 5, 9, 1, 14);
             treningi.SelectionChanged += Treningi_SelectionChanged;
             grid.Children.Add(treningi);
 
             //prawwa strona
 
-            Label label = Helper.getLabel("moj_aktualny_trening", "Mój aktualny trening",0,3,16,16);
-            grid.Children.Add(label);
+            moj_aktualny_trening = Helper.getLabel("moj_aktualny_trening", "Mój aktualny trening",0,3,16,16);
+            grid.Children.Add(moj_aktualny_trening);
 
-            TextBlock dzisiejszy_trening = Helper.getTextBlock("dzisiejszy_trening", "Dzisiejszy trening", 3, 2, 16, 16);
+            dzisiejszy_trening = Helper.getTextBlock("dzisiejszy_trening", "Dzisiejszy trening", 3, 2, 16, 16);
             dzisiejszy_trening.PreviewMouseDown += Dzisiejszy_trening_PreviewMouseDown;
             dzisiejszy_trening.HorizontalAlignment = HorizontalAlignment.Center;
             dzisiejszy_trening.VerticalAlignment = VerticalAlignment.Center;
             dzisiejszy_trening.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(dzisiejszy_trening);
 
-            TextBlock nastepny_trening = Helper.getTextBlock("nastepny_trening", "Następny Trening", 5, 2, 16, 16);
+            nastepny_trening = Helper.getTextBlock("nastepny_trening", "Następny Trening", 5, 2, 16, 16);
             nastepny_trening.PreviewMouseDown += Nastepny_trening_PreviewMouseDown;
             nastepny_trening.HorizontalAlignment = HorizontalAlignment.Center;
             nastepny_trening.VerticalAlignment = VerticalAlignment.Center;
             nastepny_trening.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(nastepny_trening);
 
-            Label polubione_treningi = Helper.getLabel("polubione_treningi", "Polubione Treningi", 7, 3, 16, 16);
+            polubione_treningi = Helper.getLabel("polubione_treningi", "Polubione Treningi", 7, 3, 16, 16);
             grid.Children.Add(polubione_treningi);
 
             polubione_treningi_listbox= Helper.getListBox(DataBase.likedTrainings, "polubione_trenigni_listbox", 10, 8, 17, 14);
@@ -57,6 +67,51 @@ namespace FITAPP
             grid.Children.Add(polubione_treningi_listbox);
 
             return grid;
+        }
+
+        private void SearchTraining_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(this.searchTraining.Text == "")
+            {
+                trainings = DataBase.trainings;
+                this.treningi.Items.Clear();
+                foreach (Training x in trainings)
+                {
+                    this.treningi.Items.Add(x);
+                }
+            }
+            else
+            {
+                trainings = DataBase.trainings;
+                string text = this.searchTraining.Text;
+                List<Training> temp = new List<Training>();
+                //tag
+                foreach (Training x in trainings)
+                {
+                    foreach (Tag tag in x.tags)
+                    {
+                        if (tag.name.Equals(text))
+                        {
+                            temp.Add(x);
+                        }
+                    }
+                }
+                //text
+                foreach (Training x in trainings)
+                {
+                    if (x.name.Equals(text))
+                    {
+                        temp.Add(x);
+                    }
+                }
+
+                this.treningi.Items.Clear();
+                this.trainings = temp;
+                foreach(Training x in temp)
+                {
+                    this.treningi.Items.Add(x);
+                }
+            }
         }
 
         private void Nastepny_trening_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -75,7 +130,7 @@ namespace FITAPP
             grid = page.drawComponent(grid);
         }
 
-         private void Polubione_treningi_listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Polubione_treningi_listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = polubione_treningi_listbox.SelectedIndex;
             Training training = DataBase.likedTrainings[index];
@@ -87,7 +142,7 @@ namespace FITAPP
         private void Treningi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = treningi.SelectedIndex;
-            Training training = DataBase.trainings[index];
+            Training training = trainings[index];
             Specific_trainingPage page = new Specific_trainingPage(training,this);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);

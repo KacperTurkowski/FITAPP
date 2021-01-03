@@ -68,6 +68,7 @@
     <Compile Include="Specific_dishPage.cs" />
     <Compile Include="Specific_exercisePage.cs" />
     <Compile Include="specific_trainingPage.cs" />
+    <Compile Include="Tag.cs" />
     <Compile Include="TrainingPage.cs" />
     <Compile Include="Trening.cs" />
     <Page Include="Login.xaml">

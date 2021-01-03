@@ -25,10 +25,13 @@ namespace FITAPP
             Label trainingTitle = Helper.getLabel(training.name + "_title", training.name, 0, 3, 0, 16);
             grid.Children.Add(trainingTitle);
 
-            Label lista_cwiczen = Helper.getLabel("lista_cwiczen", "Lista Ćwiczeń", 3, 5, 0, 16);
+            Label lista_cwiczen = Helper.getLabel("lista_cwiczen", "Lista Ćwiczeń", 3, 2, 0, 16);
             grid.Children.Add(lista_cwiczen);
 
             //listbox
+            TabControl lista_cwiczen_list = new Helper().GetTabControl(this,grid,training, "lista-cwiczen_list", 5, 10, 1, 15);
+            grid.Children.Add(lista_cwiczen_list);
+
 
             //prawa strona
 

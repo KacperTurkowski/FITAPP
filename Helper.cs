@@ -17,6 +17,12 @@ namespace FITAPP
     {
         Grid grid;
         Parentpage page;
+        int temp;
+        ListBox list;
+        ListBox[] days = new ListBox[7];
+        Training training;
+        string[] daysString = { "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela" };
+        TabControl tab;
         public Button getBackButton(Grid grid, Parentpage page, string name, int row, int rowspan, int column, int columnspan)
         {
             Button button = new Button();
@@ -29,19 +35,18 @@ namespace FITAPP
             button.Content = new Image
             {
                 Source = new BitmapImage(new Uri(@"C:\Users\Kacper\source\repos\FITAPP\back.png")),
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch
             };
             this.grid = grid;
             this.page = page;
             return button;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
-
         public static Label getLabel(string name, string content, int row, int rowspan, int column, int columnspan)
         {
             Label label = new Label();
@@ -107,6 +112,70 @@ namespace FITAPP
             Grid.SetColumnSpan(textBlock, columnspan);
             Grid.SetRowSpan(textBlock, rowspan);
             return textBlock;
+        }
+        public TabControl GetTabControl(Parentpage page, Grid grid, Training training, string name, int row, int rowspan, int column, int columnspan)
+        {
+            this.grid = grid;
+            this.page = page;
+            tab = new TabControl();
+            Grid.SetColumn(tab, column);
+            Grid.SetRow(tab, row);
+            Grid.SetColumnSpan(tab, columnspan);
+            Grid.SetRowSpan(tab, rowspan);
+            this.training = training;
+            if (training.manyDays)
+            {
+                for(int i = 0; i < 7; i++)
+                {
+                    if (training.days[i])
+                    {
+                        TabItem item = new TabItem();
+                        item.Header = daysString[i];
+                        this.days[i] = new ListBox();
+
+                        this.days[i].SelectionChanged += Helper_SelectionChanged;
+                        foreach (Exercise x in training.exercisesD[i])
+                            this.days[i].Items.Add(x);
+                        item.Content = this.days[i];
+                        tab.Items.Add(item);
+                    }
+                }
+            }
+            else
+            {
+                TabItem item = new TabItem();
+                item.Header = "Ćwiczenia";
+                this.list = new ListBox();
+                list.SelectionChanged += List_SelectionChanged;
+                foreach (Exercise x in training.exercises)
+                    list.Items.Add(x);
+                item.Content = list;
+                tab.Items.Add(item);
+            }
+            return tab;
+        }
+
+        private void Helper_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            TabItem item = (TabItem)tab.Items[tab.SelectedIndex];
+            int index = 0;
+            for (index = 0; index < this.daysString.Length; index++)
+            {
+                if (item.Header.Equals(this.daysString[index]))
+                    break;
+            }
+            Specific_exercisePage page = new Specific_exercisePage(training.exercisesD[index][this.days[index].SelectedIndex], this.page);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
+        }
+
+        private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = list.SelectedIndex;
+            Specific_exercisePage page = new Specific_exercisePage(training.exercises[index],this.page);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
         }
     }
 }

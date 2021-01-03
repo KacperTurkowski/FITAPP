@@ -11,6 +11,12 @@ namespace FITAPP
 {
     class DietPage : Parentpage
     {
+        List<Diet> left;
+        ListBox leftListBox;
+        TextBox leftTextBox;
+        List<Diet> right;
+        ListBox rightListBox;
+        TextBox rightTextBox;
         public override Grid drawComponent(Grid grid)
         {
             //lewa strona
@@ -22,13 +28,14 @@ namespace FITAPP
             otworz_diete.Click += Otworz_diete_Click;
             grid.Children.Add(otworz_diete);
 
-            TextBox wyszukaj_diete = Helper.getTextBox("wyszukaj_diete","Wyszukaj Dietę",3,2,1,15);
-            wyszukaj_diete.TextChanged += Wyszukaj_diete_TextChanged;
-            grid.Children.Add(wyszukaj_diete);
+            leftTextBox = Helper.getTextBox("wyszukaj_diete","Wyszukaj Dietę",3,2,1,15);
+            leftTextBox.TextChanged += Wyszukaj_diete_TextChanged;
+            grid.Children.Add(leftTextBox);
 
-            ListBox diety = Helper.getListBox(DataBase.diets,"diety", 5, 9, 1, 15);
-            diety.SelectionChanged += Diety_SelectionChanged;
-            grid.Children.Add(diety);
+            this.left = DataBase.diets;
+            leftListBox = Helper.getListBox(this.left,"diety", 5, 9, 1, 15);
+            leftListBox.SelectionChanged += Diety_SelectionChanged;
+            grid.Children.Add(leftListBox);
 
             //koniec
             //prawa strona
@@ -70,6 +77,13 @@ namespace FITAPP
 
         private void Wyszukaj_diete_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if(leftTextBox.Text != "")
+            {
+                string text = leftTextBox.Text;
+                //opcja z tagami
+
+                //opcja z tekstem
+            }
             MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie DietPage w metodzie \" Wyszukaj_diete_TextChanged\"");
         }
 

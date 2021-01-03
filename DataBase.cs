@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FITAPP
 {
@@ -40,9 +41,7 @@ namespace FITAPP
                 trainings.Add(new Training("training" + i, exercises.GetRange(15, 5)));
             }
 
-            todayT = new Training("Siłowy", exercises.GetRange(5, 10));
-
-            todayD = new Diet("wege", dishes.GetRange(5, 10));
+            todayT = new Training("Wydolnościowy", exercises.GetRange(15,5));
 
             diets = new List<Diet>();
             for(int i = 0; i < 50; i++)
@@ -50,10 +49,25 @@ namespace FITAPP
                 diets.Add(new Diet("diet" + i, dishes.GetRange(15, 5)));
             }
 
+            todayD = diets[5];
+
             likedTrainings = trainings.GetRange(10, 5);
             likedDiets = diets.GetRange(10, 5);
 
-            nextTraining = new Training("Wydolnościowy", exercises.GetRange(25, 5));
+            List<Exercise>[] temp= new List<Exercise>[7];
+            for(int i = 0; i < 7; i++)
+            {
+                temp[i] = new List<Exercise>();
+            }
+            for(int i = 0; i < 3; i++)
+            {
+                temp[i].AddRange(exercises.GetRange(i * 5, 5));
+            }
+
+            nextTraining = new Training("test", temp);
+
+
+
         }
     }
 }
