@@ -62,12 +62,21 @@ namespace FITAPP
 
         private void Ustaw_jako_aktualny_trening_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obłużona\n znajdziesz ją w specific_trainingpage");
+            if (training.manyDays)
+            {
+                MessageBox.Show("Dla treningu wielodniowego operacja nie została obsłużona");
+            }
+            else
+            {
+                DataBase.todayT = training;
+                MessageBox.Show("Ustawiono " + training.name + " jako aktualny trening");
+            }
         }
 
         private void Dodaj_do_ulubionych_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obłużona\n znajdziesz ją w specific_trainingpage");
+            DataBase.likedTrainings.Add(training);
+            MessageBox.Show("Trening został dodany od ulubionych");
         }
 
         public override Grid drawGrid(Grid grid)
