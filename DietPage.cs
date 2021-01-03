@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace FITAPP
 {
@@ -13,6 +14,7 @@ namespace FITAPP
         public override Grid drawComponent(Grid grid)
         {
             //lewa strona
+
             Label title = Helper.getLabel("lista_diet", "Lista Diet:", 0, 3, 1, 16);
             grid.Children.Add(title);
 
@@ -33,7 +35,11 @@ namespace FITAPP
             Label moja_dieta = Helper.getLabel("moja_dieta", "Moja Dieta", 0, 3, 16, 16);
             grid.Children.Add(moja_dieta);
 
-            Label dzisiejsza_dieta = Helper.getLabel("dzisiejsza_dieta", "Dzisiejsza Dieta", 3, 3, 16, 16);
+            TextBlock dzisiejsza_dieta = Helper.getTextBlock("dzisiejsza_dieta", "Dzisiejsza Dieta", 3, 3, 16, 16);
+            dzisiejsza_dieta.TextDecorations = TextDecorations.Underline;
+            dzisiejsza_dieta.PreviewMouseDown += Dzisiejsza_dieta_PreviewMouseDown;
+            dzisiejsza_dieta.HorizontalAlignment = HorizontalAlignment.Center;
+            dzisiejsza_dieta.VerticalAlignment = VerticalAlignment.Center;
             grid.Children.Add(dzisiejsza_dieta);
 
             Label polubione_diety = Helper.getLabel("polubione_diety", "Polubione Diety", 6, 3, 16, 16);
@@ -45,6 +51,11 @@ namespace FITAPP
 
 
             return grid;
+        }
+
+        private void Dzisiejsza_dieta_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie DietPage w metodzie \" Dzisiejsza_dieta_PreviewMouseDown\"");
         }
 
         private void Polubione_diety_listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)

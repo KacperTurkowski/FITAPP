@@ -11,12 +11,17 @@ namespace FITAPP
     class Specific_trainingPage : Parentpage
     {
         Training training;
-        public Specific_trainingPage(Training training)
+        Parentpage parentpage;
+        public Specific_trainingPage(Training training, Parentpage parentpage)
         {
             this.training = training;
+            this.parentpage = parentpage;
         }
         public override Grid drawComponent(Grid grid)
         {
+            Button back = new Helper().getBackButton(grid, parentpage, "back", 0, 2, 0, 2);
+            grid.Children.Add(back);
+
             Label trainingTitle = Helper.getLabel(training.name + "_title", training.name, 0, 3, 0, 16);
             grid.Children.Add(trainingTitle);
 

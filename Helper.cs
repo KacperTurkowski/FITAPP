@@ -9,11 +9,39 @@ using System.Windows.Media;
 using System.Dynamic;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media.Imaging;
 
 namespace FITAPP
 {
     class Helper
     {
+        Grid grid;
+        Parentpage page;
+        public Button getBackButton(Grid grid, Parentpage page, string name, int row, int rowspan, int column, int columnspan)
+        {
+            Button button = new Button();
+            button.Name = name;
+            Grid.SetColumn(button, column);
+            Grid.SetRow(button, row);
+            Grid.SetColumnSpan(button, columnspan);
+            Grid.SetRowSpan(button, rowspan);
+            button.Click += Button_Click;
+            button.Content = new Image
+            {
+                Source = new BitmapImage(new Uri(@"C:\Users\Kacper\source\repos\FITAPP\back.png")),
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            this.grid = grid;
+            this.page = page;
+            return button;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
+        }
+
         public static Label getLabel(string name, string content, int row, int rowspan, int column, int columnspan)
         {
             Label label = new Label();

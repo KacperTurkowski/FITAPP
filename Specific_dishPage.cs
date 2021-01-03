@@ -12,14 +12,18 @@ namespace FITAPP
     class Specific_dishPage : Parentpage
     {
         Grid grid;
+        Parentpage parent;
         Dish dish;
-        public Specific_dishPage(Dish dish)
+        public Specific_dishPage(Dish dish, Parentpage parent)
         {
             this.dish = dish;
+            this.parent = parent;
         }
         public override Grid drawComponent(Grid grid)
         {
             this.grid = grid;
+            Button back = new Helper().getBackButton(grid, parent, "back", 0, 2, 0, 2);
+            grid.Children.Add(back);
 
             Label tytul = Helper.getLabel("tytul", dish.name, 0, 3, 0, 32);
             grid.Children.Add(tytul);

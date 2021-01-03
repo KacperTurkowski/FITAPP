@@ -62,7 +62,7 @@ namespace FITAPP
         private void Nastepny_trening_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             Training training = DataBase.nextTraining;
-            Specific_trainingPage page = new Specific_trainingPage(training);
+            Specific_trainingPage page = new Specific_trainingPage(training,this);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
@@ -70,7 +70,7 @@ namespace FITAPP
         private void Dzisiejszy_trening_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Training training = DataBase.todayT;
-            Specific_trainingPage page = new Specific_trainingPage(training);
+            Specific_trainingPage page = new Specific_trainingPage(training,this);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
@@ -79,7 +79,7 @@ namespace FITAPP
         {
             int index = polubione_treningi_listbox.SelectedIndex;
             Training training = DataBase.likedTrainings[index];
-            Specific_trainingPage page = new Specific_trainingPage(training);
+            Specific_trainingPage page = new Specific_trainingPage(training,this);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
@@ -88,7 +88,7 @@ namespace FITAPP
         {
             int index = treningi.SelectedIndex;
             Training training = DataBase.trainings[index];
-            Specific_trainingPage page = new Specific_trainingPage(training);
+            Specific_trainingPage page = new Specific_trainingPage(training,this);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }

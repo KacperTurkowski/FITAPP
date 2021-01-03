@@ -38,6 +38,9 @@ namespace FITAPP
             otworz_dzisiejsza_diete.Click += Otworz_dzisiejsza_diete_Click;
             grid.Children.Add(otworz_dzisiejsza_diete);
 
+            Label dietName = Helper.getLabel("nazwa_diety", DataBase.todayD.name, 3, 3, 16, 16);
+            grid.Children.Add(dietName);
+
             listBox2 = Helper.getListBox(DataBase.todayD.dishes, "diety", 6, 8, 17, 14);
             listBox2.SelectionChanged += dieta_SelectedIndexChanged;
             grid.Children.Add(listBox2);
@@ -71,7 +74,7 @@ namespace FITAPP
         {
             int index = listBox.SelectedIndex;
             Exercise exercise = DataBase.todayT.exercises[index];
-            Specific_exercisePage page = new Specific_exercisePage(exercise);
+            Specific_exercisePage page = new Specific_exercisePage(exercise, this);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
@@ -79,7 +82,7 @@ namespace FITAPP
         {
             int index = listBox2.SelectedIndex;
             Dish dish = DataBase.todayD.dishes[index];
-            Specific_dishPage page = new Specific_dishPage(dish);
+            Specific_dishPage page = new Specific_dishPage(dish,this);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
@@ -89,7 +92,7 @@ namespace FITAPP
         }
         private void otworz_dzisiejszy_trening_Click(object sender, RoutedEventArgs e)
         {
-            Specific_trainingPage page = new Specific_trainingPage(DataBase.todayT);
+            Specific_trainingPage page = new Specific_trainingPage(DataBase.todayT,this);
             this.grid = page.drawGrid(grid);
             this.grid = page.drawComponent(grid);
         }
