@@ -29,7 +29,7 @@ namespace FITAPP
             grid.Children.Add(lista_cwiczen);
 
             //listbox
-            TabControl lista_cwiczen_list = new Helper().GetTabControl(this,grid,training, "lista-cwiczen_list", 5, 10, 1, 15);
+            TabControl lista_cwiczen_list = new Helper().GetTabControl_T(this,grid,training, "lista-cwiczen_list", 5, 10, 1, 15);
             grid.Children.Add(lista_cwiczen_list);
 
 

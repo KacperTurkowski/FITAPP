@@ -19,6 +19,7 @@ namespace FITAPP
         public static List<Training> likedTrainings;
         public static List<Diet> likedDiets;
         public static Training nextTraining;//następny trening
+        public static Diet nextDiet;//następna dieta
         static DataBase()//taki odpowiednik bloku statycznyego w Javie
         {
             passwords.Add("Kacper", "abc");
@@ -28,6 +29,7 @@ namespace FITAPP
             {
                 exercises.Add(new Exercise("exercise" + i, i));
             }
+           
 
             dishes = new List<Dish>();
             for(int i = 0; i < 50; i++)

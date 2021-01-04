@@ -88,7 +88,9 @@ namespace FITAPP
         }
         private void Otworz_dzisiejsza_diete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainPage w metodzie \"trening_SelectedIndexChanged\"");
+            Specific_dietPage page = new Specific_dietPage(DataBase.todayD, this);
+            this.grid = page.drawGrid(grid);
+            this.grid = page.drawComponent(grid);
         }
         private void otworz_dzisiejszy_trening_Click(object sender, RoutedEventArgs e)
         {

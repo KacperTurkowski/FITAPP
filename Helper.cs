@@ -18,6 +18,7 @@ namespace FITAPP
         Grid grid;
         Parentpage page;
         int temp;
+        Diet diet;
         ListBox list;
         ListBox[] days = new ListBox[7];
         Training training;
@@ -113,7 +114,7 @@ namespace FITAPP
             Grid.SetRowSpan(textBlock, rowspan);
             return textBlock;
         }
-        public TabControl GetTabControl(Parentpage page, Grid grid, Training training, string name, int row, int rowspan, int column, int columnspan)
+        public TabControl GetTabControl_T(Parentpage page, Grid grid, Training training, string name, int row, int rowspan, int column, int columnspan)
         {
             this.grid = grid;
             this.page = page;
@@ -154,6 +155,44 @@ namespace FITAPP
             }
             return tab;
         }
+        /*public TabControl GetTabControl_D(Parentpage page, Grid grid, Diet diet, string name, int row, int rowspan, int column, int columnspan)
+        {
+            this.grid = grid;
+            this.page = page;
+            tab = new TabControl();
+            Grid.SetColumn(tab, column);
+            Grid.SetRow(tab, row);
+            Grid.SetColumnSpan(tab, columnspan);
+            Grid.SetRowSpan(tab, rowspan);
+            this.diet = diet;
+            if (diet.manyDays)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    TabItem item = new TabItem();
+                    item.Header = daysString[i];
+                    this.days[i] = new ListBox();
+
+                    this.days[i].SelectionChanged += Helper_SelectionChanged;
+                    foreach (Exercise x in training.exercisesD[i])
+                        this.days[i].Items.Add(x);
+                    item.Content = this.days[i];
+                    tab.Items.Add(item);
+                }
+            }
+            else
+            {
+                TabItem item = new TabItem();
+                item.Header = "Ćwiczenia";
+                this.list = new ListBox();
+                list.SelectionChanged += List_SelectionChanged;
+                foreach (Exercise x in training.exercises)
+                    list.Items.Add(x);
+                item.Content = list;
+                tab.Items.Add(item);
+            }
+            return tab;
+        }*/
 
         private void Helper_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
