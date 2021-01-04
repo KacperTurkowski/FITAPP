@@ -131,7 +131,7 @@ namespace FITAPP
                     if (training.days[i])
                     {
                         TabItem item = new TabItem();
-                        item.Header = daysString[i];
+                        item.Header = "Dzień " + i;
                         this.days[i] = new ListBox();
 
                         this.days[i].SelectionChanged += Helper_SelectionChanged;
@@ -155,7 +155,7 @@ namespace FITAPP
             }
             return tab;
         }
-        /*public TabControl GetTabControl_D(Parentpage page, Grid grid, Diet diet, string name, int row, int rowspan, int column, int columnspan)
+        public TabControl GetTabControl_D(Parentpage page, Grid grid, Diet diet, string name, int row, int rowspan, int column, int columnspan)
         {
             this.grid = grid;
             this.page = page;
@@ -173,8 +173,8 @@ namespace FITAPP
                     item.Header = daysString[i];
                     this.days[i] = new ListBox();
 
-                    this.days[i].SelectionChanged += Helper_SelectionChanged;
-                    foreach (Exercise x in training.exercisesD[i])
+                    this.days[i].SelectionChanged += HelperD_SelectionChanged;
+                    foreach (Dish x in diet.dishD[i])
                         this.days[i].Items.Add(x);
                     item.Content = this.days[i];
                     tab.Items.Add(item);
@@ -183,16 +183,38 @@ namespace FITAPP
             else
             {
                 TabItem item = new TabItem();
-                item.Header = "Ćwiczenia";
+                item.Header = "Posiłki";
                 this.list = new ListBox();
-                list.SelectionChanged += List_SelectionChanged;
-                foreach (Exercise x in training.exercises)
+                list.SelectionChanged += List_SelectionChanged_D;
+                foreach (Dish x in diet.dishes)
                     list.Items.Add(x);
                 item.Content = list;
                 tab.Items.Add(item);
             }
             return tab;
-        }*/
+        }
+
+        private void List_SelectionChanged_D(object sender, SelectionChangedEventArgs e)
+        {
+            int index = list.SelectedIndex;
+            Specific_dishPage page = new Specific_dishPage(diet.dishes[index], this.page);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
+        }
+
+        private void HelperD_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabItem item = (TabItem)tab.Items[tab.SelectedIndex];
+            int index = 0;
+            for (index = 0; index < this.daysString.Length; index++)
+            {
+                if (item.Header.Equals(this.daysString[index]))
+                    break;
+            }
+            Specific_dishPage page = new Specific_dishPage(diet.dishD[index][this.days[index].SelectedIndex], this.page);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
+        }
 
         private void Helper_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -201,7 +223,7 @@ namespace FITAPP
             int index = 0;
             for (index = 0; index < this.daysString.Length; index++)
             {
-                if (item.Header.Equals(this.daysString[index]))
+                if (item.Header.Equals("Dzień "+index))
                     break;
             }
             Specific_exercisePage page = new Specific_exercisePage(training.exercisesD[index][this.days[index].SelectedIndex], this.page);

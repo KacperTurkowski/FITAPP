@@ -29,8 +29,8 @@ namespace FITAPP
             grid.Children.Add(lista_diet);
 
             //listbox
-            //TabControl lista_diet_list = new Helper().GetTabControl(this, grid, diet, "lista-cwiczen_list", 5, 10, 1, 15);
-            //grid.Children.Add(lista_diet_list);
+            TabControl lista_diet_list = new Helper().GetTabControl_D(this, grid, diet, "lista-cwiczen_list", 5, 10, 1, 15);
+            grid.Children.Add(lista_diet_list);
 
 
             //prawa strona

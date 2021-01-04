@@ -13,7 +13,7 @@ namespace FITAPP
         public bool manyDays;
         public double grade = 0.0;
         public string description = "Brak opisu";
-        public List<Diet>[] dishD = new List<Diet>[7];
+        public List<Dish>[] dishD = new List<Dish>[7];
         public List<Tag> tags = new List<Tag>();
         public Diet(string name, List<Dish> dishes)
         {
@@ -21,7 +21,7 @@ namespace FITAPP
             this.dishes = dishes;
             manyDays = false;
         }
-        public Diet(string name, List<Diet>[] dish)
+        public Diet(string name, List<Dish>[] dish)
         {
             manyDays = true;
             this.name = name;
