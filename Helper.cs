@@ -103,16 +103,22 @@ namespace FITAPP
             Grid.SetRowSpan(listbox, rowspan);
             return listbox;
         }
-        public static TextBlock getTextBlock(string name, string content, int row, int rowspan, int column, int columnspan)
+        public static ScrollViewer getTextBlock(string name, string content, int row, int rowspan, int column, int columnspan)
         {
+            ScrollViewer scrollViewer = new ScrollViewer();
+            Grid.SetColumn(scrollViewer, column);
+            Grid.SetRow(scrollViewer, row);
+            Grid.SetColumnSpan(scrollViewer, columnspan);
+            Grid.SetRowSpan(scrollViewer, rowspan);
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             TextBlock textBlock = new TextBlock();
             textBlock.Name = name;
+            textBlock.TextWrapping = TextWrapping.Wrap;
             textBlock.Text = content;
-            Grid.SetColumn(textBlock, column);
-            Grid.SetRow(textBlock, row);
-            Grid.SetColumnSpan(textBlock, columnspan);
-            Grid.SetRowSpan(textBlock, rowspan);
-            return textBlock;
+
+            scrollViewer.Content = textBlock;
+
+            return scrollViewer;
         }
         public TabControl GetTabControl_T(Parentpage page, Grid grid, Training training, string name, int row, int rowspan, int column, int columnspan)
         {

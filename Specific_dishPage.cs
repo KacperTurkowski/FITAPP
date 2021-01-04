@@ -31,13 +31,13 @@ namespace FITAPP
             Label skladniki = Helper.getLabel("skladniki", "Składniki", 3, 2, 0, 16);
             grid.Children.Add(skladniki);
 
-            TextBlock skladniki_list = Helper.getTextBlock("skladniki_list", dish.ingredients, 5, 4, 1, 14);
+            ScrollViewer skladniki_list = Helper.getTextBlock("skladniki_list", dish.ingredients, 5, 4, 1, 14);
             grid.Children.Add(skladniki_list);
 
             Label przepis_label = Helper.getLabel("przepis_label", "Przepis", 10, 2, 1, 14);
             grid.Children.Add(przepis_label);
 
-            TextBlock przepis = Helper.getTextBlock("przepis",dish.recipe,13,4,1,14);
+            ScrollViewer przepis = Helper.getTextBlock("przepis",dish.recipe,13,4,1,14);
             grid.Children.Add(przepis);
 
             Image image = new Image();

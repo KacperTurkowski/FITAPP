@@ -14,7 +14,7 @@ namespace FITAPP
         ListBox polubione_diety_listbox, diety;
         Label dostepne_diety, moja_aktualna_dieta, polubiona_dieta;
         Button dodaj_diete;
-        TextBlock dzisiejsza_dieta, nastepna_dieta;
+        ScrollViewer dzisiejsza_dieta, nastepna_dieta;
         Grid grid;
         List<Diet> diets;
         TextBox searchDiets;
@@ -47,14 +47,16 @@ namespace FITAPP
             dzisiejsza_dieta.PreviewMouseDown += Dzisiejsza_Dieta_PreviewMouseDown;
             dzisiejsza_dieta.HorizontalAlignment = HorizontalAlignment.Center;
             dzisiejsza_dieta.VerticalAlignment = VerticalAlignment.Center;
-            dzisiejsza_dieta.TextDecorations = TextDecorations.Underline;
+            TextBlock tb = (TextBlock)dzisiejsza_dieta.Content;
+            tb.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(dzisiejsza_dieta);
 
             nastepna_dieta = Helper.getTextBlock("nastepna_dieta", "Następna Dieta", 5, 2, 16, 16);
             nastepna_dieta.PreviewMouseDown += Nastepna_Dieta_PreviewMouseDown;
             nastepna_dieta.HorizontalAlignment = HorizontalAlignment.Center;
             nastepna_dieta.VerticalAlignment = VerticalAlignment.Center;
-            nastepna_dieta.TextDecorations = TextDecorations.Underline;
+            TextBlock tb1 = (TextBlock)nastepna_dieta.Content;
+            tb1.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(nastepna_dieta);
 
             polubiona_dieta = Helper.getLabel("polubione_diety", "Polubione Diety", 7, 3, 16, 16);

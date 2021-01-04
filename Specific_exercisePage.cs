@@ -30,7 +30,7 @@ namespace FITAPP
             Label opis_cwiczenia = Helper.getLabel("opis_cwiczenia","Opis Ćwiczenia",3,2,0,16);
             grid.Children.Add(opis_cwiczenia);
 
-            TextBlock opis = Helper.getTextBlock("opis", exercise.description, 6, 11, 1, 14);
+            ScrollViewer opis = Helper.getTextBlock("opis", exercise.description, 6, 11, 1, 14);
             grid.Children.Add(opis);
 
             Image image = new Image();

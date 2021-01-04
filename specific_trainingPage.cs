@@ -38,7 +38,7 @@ namespace FITAPP
             Label opis_treningu = Helper.getLabel("opis_treningu", "Opis Treningu", 0, 3, 16, 16);
             grid.Children.Add(opis_treningu);
 
-            TextBlock opis = Helper.getTextBlock("opis", training.description, 3, 6, 17, 14);
+            ScrollViewer opis = Helper.getTextBlock("opis", training.description, 3, 6, 17, 14);
             grid.Children.Add(opis);
 
             Button dodaj_do_ulubionych = Helper.getButton("dodaj_do_ulubionych", "Dodaj do ulubionych", 9, 2, 17, 6);

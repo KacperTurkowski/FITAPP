@@ -16,7 +16,7 @@ namespace FITAPP
         ListBox polubione_treningi_listbox, treningi;
         Label dostepne_treningi, moj_aktualny_trening, polubione_treningi;
         Button dodaj_trening;
-        TextBlock dzisiejszy_trening, nastepny_trening;
+        ScrollViewer dzisiejszy_trening, nastepny_trening;
         Grid grid;
         List<Training> trainings;
         TextBox searchTraining;
@@ -49,14 +49,16 @@ namespace FITAPP
             dzisiejszy_trening.PreviewMouseDown += Dzisiejszy_trening_PreviewMouseDown;
             dzisiejszy_trening.HorizontalAlignment = HorizontalAlignment.Center;
             dzisiejszy_trening.VerticalAlignment = VerticalAlignment.Center;
-            dzisiejszy_trening.TextDecorations = TextDecorations.Underline;
+            TextBlock tb = (TextBlock)dzisiejszy_trening.Content;
+            tb.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(dzisiejszy_trening);
 
             nastepny_trening = Helper.getTextBlock("nastepny_trening", "Następny Trening", 5, 2, 16, 16);
             nastepny_trening.PreviewMouseDown += Nastepny_trening_PreviewMouseDown;
             nastepny_trening.HorizontalAlignment = HorizontalAlignment.Center;
             nastepny_trening.VerticalAlignment = VerticalAlignment.Center;
-            nastepny_trening.TextDecorations = TextDecorations.Underline;
+            TextBlock tb1 = (TextBlock)nastepny_trening.Content;
+            tb1.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(nastepny_trening);
 
             polubione_treningi = Helper.getLabel("polubione_treningi", "Polubione Treningi", 7, 3, 16, 16);

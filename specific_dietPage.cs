@@ -38,7 +38,7 @@ namespace FITAPP
             Label opis_diety = Helper.getLabel("opis_diety", "Opis Diet", 0, 3, 16, 16);
             grid.Children.Add(opis_diety);
 
-            TextBlock opis = Helper.getTextBlock("opis", diet.description, 3, 6, 17, 14);
+            ScrollViewer opis = Helper.getTextBlock("opis", diet.description, 3, 6, 17, 14);
             grid.Children.Add(opis);
 
             Button dodaj_do_ulubionych = Helper.getButton("dodaj_do_ulubionych", "Dodaj do ulubionych", 9, 2, 17, 6);

@@ -8,21 +8,23 @@ namespace FITAPP
 {
     public class Dish
     {
-        public int amount;
         public string name;
         public string recipe = "";
         public string image;
         public string ingredients = "";
-        public Dish(string name, int amount)
+        public double kcal, protein, fat, carbs;
+
+        public Dish(string name)
         {
             this.name = name;
-            this.amount = amount;
             image = @"C:\Users\Kacper\source\repos\FITAPP\photo.png";
         }
 
+
+
         public override string ToString()
         {
-            return name + "   " + amount;
+            return name;
         }
     }
 }
