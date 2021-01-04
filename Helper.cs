@@ -17,13 +17,35 @@ namespace FITAPP
     {
         Grid grid;
         Parentpage page;
-        int temp;
         Diet diet;
         ListBox list;
         ListBox[] days = new ListBox[7];
         Training training;
         string[] daysString = { "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela" };
         TabControl tab;
+        public static Slider getSlider(string name,int row,int rowspan,int column,int columnspan)
+        {
+            Slider slider = new Slider();
+            slider.Name = name;
+            slider.VerticalAlignment = VerticalAlignment.Center;
+            Grid.SetColumn(slider, column);
+            Grid.SetRow(slider, row);
+            Grid.SetColumnSpan(slider, columnspan);
+            Grid.SetRowSpan(slider, rowspan);
+            slider.Maximum = 5;
+            slider.Minimum = 0;
+            DoubleCollection tickMarks = new DoubleCollection();
+            tickMarks.Add(0);
+            tickMarks.Add(1);
+            tickMarks.Add(2);
+            tickMarks.Add(3);
+            tickMarks.Add(4);
+            tickMarks.Add(5);
+            slider.Ticks = tickMarks;
+            slider.TickFrequency = 5;
+            slider.IsSnapToTickEnabled = true;
+            return slider;
+        }
         public Button getBackButton(Grid grid, Parentpage page, string name, int row, int rowspan, int column, int columnspan)
         {
             Button button = new Button();
@@ -199,7 +221,6 @@ namespace FITAPP
             }
             return tab;
         }
-
         private void List_SelectionChanged_D(object sender, SelectionChangedEventArgs e)
         {
             int index = list.SelectedIndex;
@@ -207,7 +228,6 @@ namespace FITAPP
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
-
         private void HelperD_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TabItem item = (TabItem)tab.Items[tab.SelectedIndex];
@@ -221,7 +241,6 @@ namespace FITAPP
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
-
         private void Helper_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -236,7 +255,6 @@ namespace FITAPP
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
-
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = list.SelectedIndex;

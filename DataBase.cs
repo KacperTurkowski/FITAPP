@@ -25,10 +25,7 @@ namespace FITAPP
             passwords.Add("Kacper", "abc");
 
             exercises = new List<Exercise>();
-            /*for(int i = 0; i < 50; i++)
-            {
-                exercises.Add(new Exercise("exercise" + i, i));
-            }*/
+
             Exercise ex1 = new Exercise("Wyciskanie sztangi leżąc ");
             ex1.description = "Kładziemy się tyłem na poziomej ławeczce, stopy opieramy całą powierzchnią na podłożu, sztangę trzymamy nachwytem nad sobą, rozstaw dłoni na gryfie (w zależności elastyczności nadgarstków) powinien wynosić ok. 15-40 cm. Bierzemy wdech, a następnie powoli opuszczamy gryf sztangi w kierunku środkowej części klatki piersiowej (nieco powyżej linii sutków). Zwracamy uwagę, by w trakcie opuszczania sztangi ramiona rozchodziły się na boki. W chwili gdy gryf sztangi dotknie klatki piersiowej, rozpoczynamy ruch powrotny wyciskając (wypychając) sztangę do pozycji wyjściowej. W końcowej fazie ruchu następuje wydech.";
             ex1.image = @"C:\Users\Kacper\source\repos\FITAPP\cw1.png";
@@ -81,10 +78,7 @@ namespace FITAPP
             exercises.Add(ex10);
 
             dishes = new List<Dish>();
-            /*for(int i = 0; i < 50; i++)
-            {
-                dishes.Add(new Dish("dish" + i, i));
-            }*/
+
             Dish d1 = new Dish("Fit gofry");
             d1.recipe = "Dodajemy do miski kolejno mąkę pszenną, pełnoziarnistą, proszek do pieczenia, odzywkę białkową i sól. Mieszamy składniki łyżką aby wszystko ładnie się połączyło. Białka oddzielamy od żółtek. Ubijamy białka na sztywno. Do miski z sypkimi składnikami dodajemy żółtka jaj i mleko. Wszystko mieszamy mikserem.Po połączeniu się składników dodajemy ubite białko i mieszamy wszystko razem łyżką(nie używamy w tym kroku miksera).Porcję ciasta przelewamy do rozgrzanej gofrownicy. Ja piekę około 4 - 5 minut.Są wtedy idealne.Ale pewnie czas jest zależny od naszej gofrownicy. Proponuje poeksperymentować z czasem.Podajemy z ulubionymi dodatkami. Smacznego.";
             d1.image = @"C:\Users\Kacper\source\repos\FITAPP\d1.png";
@@ -93,6 +87,7 @@ namespace FITAPP
             d1.protein = 11.84;
             d1.fat = 23.88;
             d1.carbs = 23.69;
+            
             dishes.Add(d1);
 
             Dish d2 = new Dish("Makaron z pesto i kurczakiem");
@@ -190,8 +185,9 @@ namespace FITAPP
             {
                 trainings.Add(new Training("training" + i, exercises.GetRange(0, 10)));
             }
-
+            List<Tag> tags = new List<Tag> { new Tag("tag1", "a"), new Tag("tag2", "b") };
             todayT = new Training("Wydolnościowy", exercises.GetRange(0,5));
+            todayT.tags = tags;
 
             diets = new List<Diet>();
             for(int i = 0; i < 50; i++)
@@ -200,6 +196,7 @@ namespace FITAPP
             }
 
             todayD = diets[5];
+            todayD.tags = tags;
 
             likedTrainings = trainings.GetRange(10, 5);
             likedDiets = diets.GetRange(10, 5);

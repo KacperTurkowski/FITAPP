@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace FITAPP
 {
@@ -12,6 +13,9 @@ namespace FITAPP
     {
         Diet diet;
         Parentpage parentpage;
+        Label ocen_diete;
+        Slider grade;
+        Button zapisz_ocene;
         public Specific_dietPage(Diet diet, Parentpage parentpage)
         {
             this.diet = diet;
@@ -49,15 +53,75 @@ namespace FITAPP
             ustaw_jako_aktualna_diete.Click += Ustaw_jako_aktualna_diete_Click;
             grid.Children.Add(ustaw_jako_aktualna_diete);
 
-            Label ocen_diete = Helper.getLabel("ocen_diety", "Oceń diety", 11, 2, 17, 8);
+            ocen_diete = Helper.getLabel("ocen_diety", "Oceń dietę: ", 11, 2, 16, 5);
             grid.Children.Add(ocen_diete);
 
             //wybierz ocene
+            grade = Helper.getSlider("ocen_diete", 11, 2, 21, 6);
+
+            grade.ValueChanged += Grade_ValueChanged;
+            grid.Children.Add(grade);
+
+            zapisz_ocene = Helper.getButton("zapisz_ocene", "Oceń na _", 11,2,27,4);
+            zapisz_ocene.Click += Zapisz_ocene_Click;
+            grid.Children.Add(zapisz_ocene);
+
+
+            if (diet.grade != 0)
+            {
+                grade.Value = diet.grade;
+                zapisz_ocene.Content = "Oceń na " + diet.grade;
+            }
 
             //panel z tagami
+            ScrollViewer SV = new ScrollViewer();
+            SV.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            SV.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            Grid.SetRow(SV, 14);
+            Grid.SetColumn(SV, 17);
+            Grid.SetRowSpan(SV, 5);
+            Grid.SetColumnSpan(SV, 14);
+
+            WrapPanel list = new WrapPanel();
+            
+                        
+            list.Orientation = Orientation.Horizontal;
+            list.HorizontalAlignment = HorizontalAlignment.Left;
+            list.VerticalAlignment = VerticalAlignment.Top;
+            
+            //ilość rzędów tagów
+            int count = diet.tags.Count;
+            foreach(Tag tag in diet.tags)
+            {
+                Label label = new Label();
+                label.Content = tag.name;
+                label.Background = Brushes.Gray;
+                label.Margin = new Thickness(5);
+                list.Children.Add(label);
+            }
+            SV.Content = list;
+            grid.Children.Add(SV);
 
             return grid;
 
+        }
+
+        private void Zapisz_ocene_Click(object sender, RoutedEventArgs e)
+        {
+            if(grade.Value != 0)
+            {
+                diet.grade = grade.Value;
+                MessageBox.Show("Dieta " + diet.name + " została oceniona na " + grade.Value);
+            }
+        }
+
+        private void Grade_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //zapisywanie oceny
+            if (grade.Value != 0)
+                zapisz_ocene.Content = "Oceń na " + grade.Value;
+            else
+                zapisz_ocene.Content = "Oceń na _";
         }
 
         private void Ustaw_jako_aktualna_diete_Click(object sender, RoutedEventArgs e)
