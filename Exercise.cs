@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FITAPP
 {
-    class Exercise
+    public class Exercise
     {
         public int amount;
         public string name;

@@ -64,7 +64,9 @@ namespace FITAPP
         {
             if (training.manyDays)
             {
-                MessageBox.Show("Dla treningu wielodniowego operacja nie została obsłużona");
+                SetAsCurrentTraining window = new SetAsCurrentTraining(training);
+                window.Show();
+                
             }
             else
             {

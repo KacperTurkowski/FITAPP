@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FITAPP
 {
-    class Tag
+    public class Tag
     {
         public String name;
         public String description;

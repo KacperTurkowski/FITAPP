@@ -22,13 +22,20 @@ namespace FITAPP
             Button otworz_dzisiejszy_trening = Helper.getButton("otworz_dzisiejszy_trening", "Otwórz Dzisiejszy Trening", 15, 3, 9, 6);
             otworz_dzisiejszy_trening.Click += otworz_dzisiejszy_trening_Click;
             grid.Children.Add(otworz_dzisiejszy_trening);
+            if (DataBase.todayT.exercises.Count != 0)
+            {
+                Label trainingName = Helper.getLabel("nazwa_treningu", DataBase.todayT.name, 3, 3, 0, 16);
+                grid.Children.Add(trainingName);
 
-            Label trainingName = Helper.getLabel("nazwa_treningu", DataBase.todayT.name,3,3,0,16);
-            grid.Children.Add(trainingName);
-
-            listBox = Helper.getListBox(DataBase.todayT.exercises,"treningi", 6, 8, 1, 14);
-            listBox.SelectionChanged += trening_SelectedIndexChanged;
-            grid.Children.Add(listBox);
+                listBox = Helper.getListBox(DataBase.todayT.exercises, "treningi", 6, 8, 1, 14);
+                listBox.SelectionChanged += trening_SelectedIndexChanged;
+                grid.Children.Add(listBox);
+            }
+            else
+            {
+                Label trainingName = Helper.getLabel("nazwa_treningu", "Dzisiaj jest dzień bez treningu", 3, 3, 0, 16);
+                grid.Children.Add(trainingName);
+            }
             //prawa strona
 
             Label diet = Helper.getLabel("dzisiejsza_dieta", "Dzisiejsza Dieta", 0,3,16, 16);

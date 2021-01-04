@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FITAPP
 {
-    class Training
+    public class Training
     {
         public string name;
         public bool manyDays;
