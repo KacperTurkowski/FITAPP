@@ -17,3 +17,5 @@ C:\Users\Kacper\source\repos\FITAPP\obj\Debug\Login.g.cs
 C:\Users\Kacper\source\repos\FITAPP\obj\Debug\Login.baml
 C:\Users\Kacper\source\repos\FITAPP\obj\Debug\SetAsCurrentTraining.g.cs
 C:\Users\Kacper\source\repos\FITAPP\obj\Debug\SetAsCurrentTraining.baml
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\Moje_konto.g.cs
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\Moje_konto.baml

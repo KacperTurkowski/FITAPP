@@ -48,7 +48,15 @@ namespace FITAPP
             Label dietName = Helper.getLabel("nazwa_diety", DataBase.todayD.name, 3, 3, 16, 16);
             grid.Children.Add(dietName);
 
-            listBox2 = Helper.getListBox(DataBase.todayD.dishes, "diety", 6, 8, 17, 14);
+            List<Dish> dishes = new List<Dish>();
+            if (!DataBase.todayD.manyDays)
+                for (int i = 0; i < 6; i++)
+                    dishes.AddRange(DataBase.todayD.dish_one_day[i]);
+            else
+                for (int i = 0; i < 6; i++)
+                    dishes.AddRange(DataBase.todayD.dish_list[(int)DateTime.Now.DayOfWeek, i]);
+
+            listBox2 = Helper.getListBox(dishes, "diety", 6, 8, 17, 14);
             listBox2.SelectionChanged += dieta_SelectedIndexChanged;
             grid.Children.Add(listBox2);
 
@@ -88,7 +96,7 @@ namespace FITAPP
         private void dieta_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = listBox2.SelectedIndex;
-            Dish dish = DataBase.todayD.dishes[index];
+            Dish dish = (Dish)listBox2.Items[index];
             Specific_dishPage page = new Specific_dishPage(dish,this);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);

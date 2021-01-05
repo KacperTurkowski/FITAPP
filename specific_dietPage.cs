@@ -15,6 +15,7 @@ namespace FITAPP
         Parentpage parentpage;
         Label ocen_diete;
         Slider grade;
+        Grid grid;
         Button zapisz_ocene;
         public Specific_dietPage(Diet diet, Parentpage parentpage)
         {
@@ -23,19 +24,23 @@ namespace FITAPP
         }
         public override Grid drawComponent(Grid grid)
         {
+            this.grid = grid;
             Button back = new Helper().getBackButton(grid, parentpage, "back", 0, 2, 0, 2);
             grid.Children.Add(back);
 
             Label dietTitle = Helper.getLabel(diet.name + "_title", diet.name, 0, 3, 0, 16);
             grid.Children.Add(dietTitle);
 
-            Label lista_diet = Helper.getLabel("lista_diet", "Lista Diet", 3, 2, 0, 16);
+            Label lista_diet = Helper.getLabel("lista_diet", "Lista Posiłków", 3, 2, 0, 16);
             grid.Children.Add(lista_diet);
 
             //listbox
-            TabControl lista_diet_list = new Helper().GetTabControl_D(this, grid, diet, "lista-cwiczen_list", 5, 10, 1, 15);
+            TabControl lista_diet_list = new Helper().GetTabControl_D(this, grid, diet, "lista-cwiczen_list", 5, 11, 1, 15);
             grid.Children.Add(lista_diet_list);
 
+            Button szczegoly = Helper.getButton("szczegoly_diety", "Zobacz szczegóły diety", 16, 2, 1, 15);
+            szczegoly.Click += Szczegoly_Click;
+            grid.Children.Add(szczegoly);
 
             //prawa strona
 
@@ -106,6 +111,13 @@ namespace FITAPP
 
         }
 
+        private void Szczegoly_Click(object sender, RoutedEventArgs e)
+        {
+            DetailsDiet page = new DetailsDiet(diet, this);
+            grid = page.drawGrid(grid);
+            grid = page.drawComponent(grid);
+        }
+
         private void Zapisz_ocene_Click(object sender, RoutedEventArgs e)
         {
             if(grade.Value != 0)
@@ -126,15 +138,8 @@ namespace FITAPP
 
         private void Ustaw_jako_aktualna_diete_Click(object sender, RoutedEventArgs e)
         {
-            if (diet.manyDays)
-            {
-                MessageBox.Show("Dla diety wielodniowego operacja nie została obsłużona");
-            }
-            else
-            {
-                DataBase.todayD = diet;
-                MessageBox.Show("Ustawiono " + diet.name + " jako aktualną dietę");
-            }
+            DataBase.todayD = diet;
+            MessageBox.Show("Ustawiono " + diet.name + " jako aktualną dietę");
         }
 
         private void Dodaj_do_ulubionych_Click(object sender, RoutedEventArgs e)

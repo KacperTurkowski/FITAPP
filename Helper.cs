@@ -116,7 +116,7 @@ namespace FITAPP
             ListBox listbox = new ListBox();            
             foreach(T x in data)
             {
-                listbox.Items.Add(x.ToString());
+                listbox.Items.Add(x);
             }
             listbox.Name = name;
             Grid.SetColumn(listbox, column);
@@ -193,7 +193,7 @@ namespace FITAPP
             Grid.SetColumnSpan(tab, columnspan);
             Grid.SetRowSpan(tab, rowspan);
             this.diet = diet;
-            if (diet.manyDays)
+            if (diet.manyDays)//wiele dni
             {
                 for (int i = 0; i < 7; i++)
                 {
@@ -202,20 +202,22 @@ namespace FITAPP
                     this.days[i] = new ListBox();
 
                     this.days[i].SelectionChanged += HelperD_SelectionChanged;
-                    foreach (Dish x in diet.dishD[i])
-                        this.days[i].Items.Add(x);
+                    for(int j=0;j<6;j++)
+                        foreach (Dish x in diet.dish_list[i,j])
+                            this.days[i].Items.Add(x);
                     item.Content = this.days[i];
                     tab.Items.Add(item);
                 }
             }
-            else
+            else//jeden dzień
             {
                 TabItem item = new TabItem();
                 item.Header = "Posiłki";
                 this.list = new ListBox();
                 list.SelectionChanged += List_SelectionChanged_D;
-                foreach (Dish x in diet.dishes)
-                    list.Items.Add(x);
+                foreach (List<Dish> x in diet.dish_one_day)
+                    foreach (Dish y in x)
+                        list.Items.Add(y);
                 item.Content = list;
                 tab.Items.Add(item);
             }
@@ -224,20 +226,15 @@ namespace FITAPP
         private void List_SelectionChanged_D(object sender, SelectionChangedEventArgs e)
         {
             int index = list.SelectedIndex;
-            Specific_dishPage page = new Specific_dishPage(diet.dishes[index], this.page);
+            Specific_dishPage page = new Specific_dishPage((Dish)list.Items[index], this.page);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }
         private void HelperD_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TabItem item = (TabItem)tab.Items[tab.SelectedIndex];
-            int index = 0;
-            for (index = 0; index < this.daysString.Length; index++)
-            {
-                if (item.Header.Equals(this.daysString[index]))
-                    break;
-            }
-            Specific_dishPage page = new Specific_dishPage(diet.dishD[index][this.days[index].SelectedIndex], this.page);
+            ListBox tempList = (ListBox)item.Content;
+            Specific_dishPage page = new Specific_dishPage((Dish)tempList.Items[tempList.SelectedIndex], this.page);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }

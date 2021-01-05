@@ -87,7 +87,7 @@ namespace FITAPP
             d1.protein = 11.84;
             d1.fat = 23.88;
             d1.carbs = 23.69;
-            
+
             dishes.Add(d1);
 
             Dish d2 = new Dish("Makaron z pesto i kurczakiem");
@@ -181,41 +181,75 @@ namespace FITAPP
             dishes.Add(d10);
 
             trainings = new List<Training>();
-            for(int i=0; i< 50; i++)
+            for (int i = 0; i < 50; i++)
             {
-                trainings.Add(new Training("training" + i, exercises.GetRange(0, 10)));
+                trainings.Add(new Training("training" + i, exercises.GetRange(0, 10), new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }));
             }
             List<Tag> tags = new List<Tag> { new Tag("tag1", "a"), new Tag("tag2", "b") };
-            todayT = new Training("Wydolnościowy", exercises.GetRange(0,5));
+            todayT = new Training("Wydolnościowy", exercises.GetRange(0, 5), new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
             todayT.tags = tags;
 
             diets = new List<Diet>();
-            for(int i = 0; i < 50; i++)
+            Random rnd = new Random();
+            for (int i = 0; i < 50; i++)
             {
-                diets.Add(new Diet("diet" + i, dishes.GetRange(0,10)));
+                List<Dish>[] tempDish = new List<Dish>[6];
+                List<double>[] amount = new List<double>[6];
+                for (int j = 0; j < 6; j++)
+                {
+                    tempDish[j] = new List<Dish>();
+                    tempDish[j].AddRange(dishes.GetRange(j, 3));
+
+                    amount[j] = new List<double> {rnd.NextDouble(),rnd.NextDouble(),rnd.NextDouble() };
+                }
+                diets.Add(new Diet("diet" + i, tempDish,amount));
+            }
+            List<Dish>[,] test = new List<Dish>[7, 6];
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    test[i, j] = new List<Dish>();
+                    test[i, j].AddRange(dishes.GetRange(0, 5));
+                }
             }
 
+            //dzsiejsza dieta
             todayD = diets[5];
             todayD.tags = tags;
 
+            //polubione treningi
             likedTrainings = trainings.GetRange(10, 5);
             likedDiets = diets.GetRange(10, 5);
 
-            List<Exercise>[] temp= new List<Exercise>[7];
-            for(int i = 0; i < 7; i++)
+            //następny trening
+            List<Exercise>[] temp = new List<Exercise>[7];
+            List<int>[] tempAmount = new List<int>[7];
+            for (int i = 0; i < 7; i++)
             {
                 temp[i] = new List<Exercise>();
             }
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 temp[i].AddRange(exercises.GetRange(0, 5));
+                tempAmount[i] = new List<int> { 1, 2, 3, 4, 5 };
             }
 
-            nextDiet = diets[7];
-            nextTraining = new Training("test", temp);
+            nextTraining = new Training("test", temp, tempAmount);
+            //następna dieta
+            List<Dish>[,] tempD = new List<Dish>[7, 6];
+            List<double>[,] amountD = new List<double>[7, 6];
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    tempD[i, j] = new List<Dish>();
+                    tempD[i, j].AddRange(dishes.GetRange(i, 2));
 
-
-
+                    amountD[i, j] = new List<double>{rnd.NextDouble(), rnd.NextDouble()};
+                }
+            }
+            nextDiet = new Diet("nextD", tempD,amountD);
         }
     }
 }

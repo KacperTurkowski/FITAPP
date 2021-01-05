@@ -69,7 +69,8 @@ namespace FITAPP
 
         private void moje_konto_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainWindow w metodzie \"moje_konto_Click\"");
+            Moje_konto window = new Moje_konto();
+            window.Show();
         }
 
         private void posilki_Click(object sender, RoutedEventArgs e)

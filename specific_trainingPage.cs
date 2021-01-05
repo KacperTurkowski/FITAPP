@@ -33,9 +33,8 @@ namespace FITAPP
             grid.Children.Add(lista_cwiczen);
 
             //listbox
-            TabControl lista_cwiczen_list = new Helper().GetTabControl_T(this,grid,training, "lista-cwiczen_list", 5, 10, 1, 15);
+            TabControl lista_cwiczen_list = new Helper().GetTabControl_T(this,grid,training, "lista-cwiczen_list", 5, 13, 1, 15);
             grid.Children.Add(lista_cwiczen_list);
-
 
             //prawa strona
 
@@ -104,7 +103,6 @@ namespace FITAPP
             return grid;
 
         }
-
         private void Zapisz_ocene_Click(object sender, RoutedEventArgs e)
         {
             if (grade.Value != 0)
@@ -113,7 +111,6 @@ namespace FITAPP
                 MessageBox.Show("Dieta " + training.name + " została oceniona na " + grade.Value);
             }
         }
-
         private void Grade_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             //zapisywanie oceny
@@ -122,7 +119,6 @@ namespace FITAPP
             else
                 zapisz_ocene.Content = "Oceń na _";
         }
-
         private void Ustaw_jako_aktualny_trening_Click(object sender, RoutedEventArgs e)
         {
             if (training.manyDays)
@@ -137,13 +133,11 @@ namespace FITAPP
                 MessageBox.Show("Ustawiono " + training.name + " jako aktualny trening");
             }
         }
-
         private void Dodaj_do_ulubionych_Click(object sender, RoutedEventArgs e)
         {
             DataBase.likedTrainings.Add(training);
             MessageBox.Show("Trening został dodany od ulubionych");
         }
-
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
