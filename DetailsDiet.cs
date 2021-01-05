@@ -38,8 +38,12 @@ namespace FITAPP
                 Grid.SetRow(tab, 2);
                 Grid.SetRowSpan(tab, 16);
 
-                Label title = Helper.getLabel("tytul_diety", diet.name, 0, 2, 2, 19);
+                Label title = Helper.getLabel("tytul_diety", diet.name, 0, 2, 2, 16);
                 grid.Children.Add(title);
+
+                nutritional = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal) + "   B: " + string.Format("{0:.00}", diet.protein) + "   T: " + string.Format("{0:.00}", diet.fat) + "   W: " + string.Format("{0:.00}", diet.carbs) + "g", 0, 2, 18, 14);
+                grid.Children.Add(nutritional);
+
 
                 for (int i = 0; i < 7; i++)
                 {
@@ -50,48 +54,46 @@ namespace FITAPP
                     item.Content = gridInTab;
 
 
-                    nutritional = Helper.getLabel("wartosc_odzywcze", "", 0, 2, 21, 9);
-                    gridInTab.Children.Add(nutritional);
 
-                    Label sniadanie_tytul = Helper.getLabel("sniadanie_tytul", "Śniadanie", 2, 1, 0, 10);
+                    Label sniadanie_tytul = Helper.getLabel("sniadanie_tytul", "Śniadanie", 0, 2, 0, 10);
                     gridInTab.Children.Add(sniadanie_tytul);
 
-                    sniadanie = Helper.getListBox(diet.dish_list[i,0], "sniadanie_posilki", 3, 6, 0, 10);
+                    sniadanie = Helper.getListBox(diet.dish_list[i,0], "sniadanie_posilki", 2, 6, 0, 10);
                     sniadanie.SelectionChanged += Sniadanie_SelectionChanged_T;
                     gridInTab.Children.Add(sniadanie);
 
-                    Label IIsniadanie_tytul = Helper.getLabel("IIsniadanie_tytul", "II Śniadanie", 2, 1, 11, 10);
+                    Label IIsniadanie_tytul = Helper.getLabel("IIsniadanie_tytul", "II Śniadanie", 0, 2, 11, 10);
                     gridInTab.Children.Add(IIsniadanie_tytul);
 
-                    IIsniadanie = Helper.getListBox(diet.dish_list[i,1], "IIsniadanie_posilki", 3, 6, 11, 10);
+                    IIsniadanie = Helper.getListBox(diet.dish_list[i,1], "IIsniadanie_posilki", 2, 6, 11, 10);
                     IIsniadanie.SelectionChanged += IIsniadanie_SelectionChanged_T;
                     gridInTab.Children.Add(IIsniadanie);
 
-                    Label lunch_tytul = Helper.getLabel("lunch_tytul", "Lunch", 2, 1, 22, 10);
+                    Label lunch_tytul = Helper.getLabel("lunch_tytul", "Lunch", 0, 2, 22, 10);
                     gridInTab.Children.Add(lunch_tytul);
 
-                    lunch = Helper.getListBox(diet.dish_list[i, 2], "lunch_posilki", 3, 6, 22, 10);
+                    lunch = Helper.getListBox(diet.dish_list[i, 2], "lunch_posilki", 2, 6, 22, 10);
                     lunch.SelectionChanged += Lunch_SelectionChanged_T;
                     gridInTab.Children.Add(lunch);
 
-                    Label obiad_tytul = Helper.getLabel("obiad_tytul", "Obiad", 5, 1, 0, 10);
+                    Label obiad_tytul = Helper.getLabel("obiad_tytul", "Obiad", 9, 2, 0, 10);
                     gridInTab.Children.Add(obiad_tytul);
 
-                    obiad = Helper.getListBox(diet.dish_list[i,3], "obiad_posilki", 10, 6, 0, 10);
+                    obiad = Helper.getListBox(diet.dish_list[i,3], "obiad_posilki", 11, 6, 0, 10);
                     obiad.SelectionChanged += Obiad_SelectionChanged_T;
                     gridInTab.Children.Add(obiad);
 
-                    Label przekaska_tytul = Helper.getLabel("przekaska_tytul", "Przekąska", 5, 1, 11, 10);
+                    Label przekaska_tytul = Helper.getLabel("przekaska_tytul", "Przekąska", 9, 2, 11, 10);
                     gridInTab.Children.Add(przekaska_tytul);
 
-                    przekaska = Helper.getListBox(diet.dish_list[i,4], "przekaska_tytul", 10, 6, 11, 10);
+                    przekaska = Helper.getListBox(diet.dish_list[i,4], "przekaska_posilki", 11, 6, 11, 10);
                     przekaska.SelectionChanged += Przekaska_SelectionChanged_T;
                     gridInTab.Children.Add(przekaska);
 
-                    Label kolacja_tytul = Helper.getLabel("kolacja_tytul", "Kolacja", 5, 1, 22, 10);
+                    Label kolacja_tytul = Helper.getLabel("kolacja_tytul", "Kolacja", 9, 2, 22, 10);
                     gridInTab.Children.Add(kolacja_tytul);
 
-                    kolacja = Helper.getListBox(diet.dish_list[i,5], "kolacja_tytul", 10, 6, 22, 10);
+                    kolacja = Helper.getListBox(diet.dish_list[i,5], "kolacja_posilki", 11, 6, 22, 10);
                     kolacja.SelectionChanged += Kolacja_SelectionChanged_T;
                     gridInTab.Children.Add(kolacja);
 
@@ -105,51 +107,51 @@ namespace FITAPP
                 Button back = new Helper().getBackButton(grid, parentpage, "back", 0, 2, 0, 2);
                 grid.Children.Add(back);
 
-                Label title = Helper.getLabel("tytul_diety", diet.name, 0, 2, 2, 19);
+                Label title = Helper.getLabel("tytul_diety", diet.name, 0, 2, 2, 16);
                 grid.Children.Add(title);
 
-                nutritional = Helper.getLabel("wartosc_odzywcze", "", 0, 2, 21, 9);
+                nutritional = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal) + "   B: " + string.Format("{0:.00}", diet.protein) + "   T: " + string.Format("{0:.00}", diet.fat) + "   W: " + string.Format("{0:.00}", diet.carbs) + "g", 0, 2, 18, 14);
                 grid.Children.Add(nutritional);
 
-                Label sniadanie_tytul = Helper.getLabel("sniadanie_tytul", "Śniadanie", 2, 1, 0, 10);
+                Label sniadanie_tytul = Helper.getLabel("sniadanie_tytul", "Śniadanie", 2, 2, 0, 10);
                 grid.Children.Add(sniadanie_tytul);
 
-                sniadanie = Helper.getListBox(diet.dish_one_day[0], "sniadanie_posilki", 3, 6, 0, 10);
+                sniadanie = Helper.getListBox(diet.dish_one_day[0], "sniadanie_posilki", 4, 5, 0, 10);
                 sniadanie.SelectionChanged += Sniadanie_SelectionChanged;
                 grid.Children.Add(sniadanie);
 
-                Label IIsniadanie_tytul = Helper.getLabel("IIsniadanie_tytul", "II Śniadanie", 2, 1, 11, 10);
+                Label IIsniadanie_tytul = Helper.getLabel("IIsniadanie_tytul", "II Śniadanie", 2, 2, 11, 10);
                 grid.Children.Add(IIsniadanie_tytul);
 
-                IIsniadanie = Helper.getListBox(diet.dish_one_day[1], "IIsniadanie_posilki",3,6,11,10);
+                IIsniadanie = Helper.getListBox(diet.dish_one_day[1], "IIsniadanie_posilki",4,5,11,10);
                 IIsniadanie.SelectionChanged += IIsniadanie_SelectionChanged;
                 grid.Children.Add(IIsniadanie);
 
-                Label lunch_tytul = Helper.getLabel("lunch_tytul", "Lunch", 2, 1, 22, 10);
+                Label lunch_tytul = Helper.getLabel("lunch_tytul", "Lunch", 2, 2, 22, 10);
                 grid.Children.Add(lunch_tytul);
 
-                lunch = Helper.getListBox(diet.dish_one_day[2], "lunch_posilki", 3, 6, 22, 10);
+                lunch = Helper.getListBox(diet.dish_one_day[2], "lunch_posilki", 4, 5, 22, 10);
                 lunch.SelectionChanged += Lunch_SelectionChanged;
                 grid.Children.Add(lunch);
 
-                Label obiad_tytul = Helper.getLabel("obiad_tytul", "Obiad", 10, 1, 0, 10);
+                Label obiad_tytul = Helper.getLabel("obiad_tytul", "Obiad", 10, 2, 0, 10);
                 grid.Children.Add(obiad_tytul);
 
-                obiad = Helper.getListBox(diet.dish_one_day[3], "obiad_posilki", 10, 6, 0, 10);
+                obiad = Helper.getListBox(diet.dish_one_day[3], "obiad_posilki", 12, 5, 0, 10);
                 obiad.SelectionChanged += Obiad_SelectionChanged;
                 grid.Children.Add(obiad);
 
-                Label przekaska_tytul = Helper.getLabel("przekaska_tytul", "Przekąska", 10, 1, 11, 10);
+                Label przekaska_tytul = Helper.getLabel("przekaska_tytul", "Przekąska", 10, 2, 11, 10);
                 grid.Children.Add(przekaska_tytul);
 
-                przekaska = Helper.getListBox(diet.dish_one_day[4], "przekaska_tytul", 10, 6, 11, 10);
+                przekaska = Helper.getListBox(diet.dish_one_day[4], "przekaska_tytul", 12,5, 11, 10);
                 przekaska.SelectionChanged += Przekaska_SelectionChanged;
                 grid.Children.Add(przekaska);
 
-                Label kolacja_tytul = Helper.getLabel("kolacja_tytul", "Kolacja", 10, 1, 22, 10);
+                Label kolacja_tytul = Helper.getLabel("kolacja_tytul", "Kolacja", 10, 2, 22, 10);
                 grid.Children.Add(kolacja_tytul);
 
-                kolacja = Helper.getListBox(diet.dish_one_day[5], "kolacja_tytul", 10, 6, 22, 10);
+                kolacja = Helper.getListBox(diet.dish_one_day[5], "kolacja_tytul", 12, 5, 22, 10);
                 kolacja.SelectionChanged += Kolacja_SelectionChanged;
                 grid.Children.Add(kolacja);
             }
