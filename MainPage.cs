@@ -48,6 +48,13 @@ namespace FITAPP
             Label dietName = Helper.getLabel("nazwa_diety", DataBase.todayD.name, 3, 3, 16, 16);
             grid.Children.Add(dietName);
 
+
+            //Śniadanie
+            //IIŚniadanie
+            //lunch
+            //Obiad
+            //Przekąska
+            //Kolacja
             List<Dish> dishes = new List<Dish>();
             if (!DataBase.todayD.manyDays)
                 for (int i = 0; i < 6; i++)

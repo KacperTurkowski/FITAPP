@@ -25,6 +25,7 @@ namespace FITAPP
 
         public double kcal = 0, protein = 0, fat = 0, carbs = 0;//suma dla całego dnia
         public double[] kcal_one_day = new double[6], protein_one_day = new double[6], fat_one_day = new double[6], carbs_one_day = new double[6];//dla diety jednodniowej poszczególne częsci dni
+        public double[] kcal_list_day = new double[7], protein_list_day = new double[7], fat_list_day = new double[7], carbs_list_day = new double[7];//suma kcal itp dla całego dnia
         public double[,] kcal_list = new double[7, 6], protein_list = new double[7, 6], fat_list = new double[7, 6], carbs_list = new double[7,6];//dla diety wielodniowej poszczególne częsci dnia
         public Diet(string name, List<Dish>[] dishes, List<double>[] amount)
         {
@@ -68,6 +69,11 @@ namespace FITAPP
                         fat_list[i,j] += x.fat*y;
                         carbs_list[i,j] += x.carbs*y;
                     }
+                    kcal_list_day[i] += kcal_list[i, j];
+                    protein_list_day[i] += protein_list[i, j];
+                    fat_list_day[i] += fat_list[i, j];
+                    carbs_list_day[i] += carbs_list[i, j];
+
                     kcal += kcal_list[i,j];
                     protein += protein_list[i,j];
                     fat += fat_list[i,j];

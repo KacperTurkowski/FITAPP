@@ -19,9 +19,10 @@ namespace FITAPP
         Parentpage page;
         Diet diet;
         ListBox list;
-        ListBox[] days = new ListBox[7];
+
         Training training;
         string[] daysString = { "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela" };
+        
         TabControl tab;
         public static Slider getSlider(string name,int row,int rowspan,int column,int columnspan)
         {
@@ -159,13 +160,13 @@ namespace FITAPP
                     if (training.days[i])
                     {
                         TabItem item = new TabItem();
-                        item.Header = "Dzień " + i;
-                        this.days[i] = new ListBox();
+                        item.Header = "Dzień " + (i+1);
+                        ListBox listBox = new ListBox();
 
-                        this.days[i].SelectionChanged += Helper_SelectionChanged;
+                        listBox.SelectionChanged += Helper_SelectionChanged;
                         foreach (Exercise x in training.exercisesD[i])
-                            this.days[i].Items.Add(x);
-                        item.Content = this.days[i];
+                            listBox.Items.Add(x);
+                        item.Content = listBox;
                         tab.Items.Add(item);
                     }
                 }
@@ -199,13 +200,13 @@ namespace FITAPP
                 {
                     TabItem item = new TabItem();
                     item.Header = daysString[i];
-                    this.days[i] = new ListBox();
+                    ListBox listbox = new ListBox();
 
-                    this.days[i].SelectionChanged += HelperD_SelectionChanged;
+                    listbox.SelectionChanged += HelperD_SelectionChanged;
                     for(int j=0;j<6;j++)
                         foreach (Dish x in diet.dish_list[i,j])
-                            this.days[i].Items.Add(x);
-                    item.Content = this.days[i];
+                            listbox.Items.Add(x);
+                    item.Content = listbox;
                     tab.Items.Add(item);
                 }
             }
@@ -248,7 +249,9 @@ namespace FITAPP
                 if (item.Header.Equals("Dzień "+index))
                     break;
             }
-            Specific_exercisePage page = new Specific_exercisePage(training.exercisesD[index][this.days[index].SelectedIndex], this.page);
+            TabItem temp = (TabItem)tab.Items[tab.SelectedIndex];
+            ListBox listbox = (ListBox)temp.Content;
+            Specific_exercisePage page = new Specific_exercisePage(training.exercisesD[index-1][listbox.SelectedIndex], this.page);
             grid = page.drawGrid(grid);
             grid = page.drawComponent(grid);
         }

@@ -11,13 +11,13 @@ using Image = System.Drawing.Image;
 
 namespace FITAPP
 {
-    class TrainingPage : Parentpage
+    public class TrainingPage : Parentpage
     {
         ListBox polubione_treningi_listbox, treningi;
         Label dostepne_treningi, moj_aktualny_trening, polubione_treningi;
         Button dodaj_trening;
         ScrollViewer dzisiejszy_trening, nastepny_trening;
-        Grid grid;
+        public Grid grid;
         List<Training> trainings;
         TextBox searchTraining;
         public override Grid drawComponent(Grid grid)
@@ -152,8 +152,8 @@ namespace FITAPP
 
         private void Dodaj_trening_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie TrainingPage w metodzie \"Dodaj_trening_Click\"");
-
+            AddNewTraining window = new AddNewTraining(this);
+            window.Show();
         }
 
         public override Grid drawGrid(Grid grid)

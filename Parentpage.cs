@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace FITAPP
 {
-    abstract class Parentpage
+    public abstract class Parentpage
     {
         public abstract Grid drawGrid(Grid grid);
         public abstract Grid drawComponent(Grid grid);

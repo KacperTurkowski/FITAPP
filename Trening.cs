@@ -33,10 +33,12 @@ namespace FITAPP
             this.exerciseDAmount = exerciseDAmount;
             for(int i = 0; i < 7; i++)
             {
-                if(exercises[i].Count != 0)
+                if (exercises[i].Count != 0)
                 {
                     days[i] = true;
                 }
+                else
+                    days[i] = false;
             }
         }
         public override string ToString()

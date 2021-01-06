@@ -15,5 +15,9 @@ namespace FITAPP
             this.name = name;
             this.description = description;
         }
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }
