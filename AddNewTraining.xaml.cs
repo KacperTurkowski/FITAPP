@@ -176,12 +176,13 @@ namespace FITAPP
             Label tag = (Label)sender;
             foreach(Tag t in tags)
             {
-                if (tag.Content.Equals(t.name))
+                if (tag.Content.Equals(t.name + "   X"))
                 {
                     tags.Remove(t);
                     break;
                 }
             }
+            this.tagi.Children.Remove(tag);
         }
 
         private void dodaj_trening_Click(object sender, RoutedEventArgs e)
