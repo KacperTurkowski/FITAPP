@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace FITAPP
 {
@@ -60,8 +61,9 @@ namespace FITAPP
                 lista_cwiczen.SelectedIndex = number-1;
                 ListBox listbox = new ListBox();
                 listbox.SelectionChanged += List_SelectionChanged;
-                listbox.MouseDoubleClick += List_MouseDoubleClick;
-
+                //listbox.MouseDoubleClick += List_MouseDoubleClick;
+                //listbox.MouseRightButtonDown += List_MouseDoubleClick;
+                listbox.PreviewMouseRightButtonUp += Listbox_PreviewMouseRightButtonUp;
                 Label last = new Label();
                 last.Content = "Dodaj kolejne ćwiczenie";
                 listbox.Items.Add(last);
@@ -70,7 +72,7 @@ namespace FITAPP
             }
         }
 
-        private void List_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Listbox_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             ListBox listbox = (ListBox)sender;
             int day = lista_cwiczen.SelectedIndex;
@@ -78,7 +80,8 @@ namespace FITAPP
             try
             {
                 label = (Label)listbox.SelectedItem;
-            }catch(Exception )
+            }
+            catch (Exception)
             {
                 listbox.Items.Remove(listbox.SelectedItem);
                 return;
@@ -86,11 +89,12 @@ namespace FITAPP
             for (int i = 0; i < exercises[day].Count; i++)
             {
                 string temp1 = exercises[day][i].name + "\nIlość Powtórzen: " + exercisesAmount[day][i];
-                
+
                 if (temp1.Equals(label.Content))
                 {
                     exercises[day].RemoveAt(i);
                     exercisesAmount[day].RemoveAt(i);
+                    break;
                 }
             }
 
@@ -111,39 +115,64 @@ namespace FITAPP
             ListBox listbox = (ListBox)tabitem.Content;
             if(listbox.SelectedIndex == listbox.Items.Count - 1)
             {
+                WrapPanel panel = new WrapPanel();
+                
                 ComboBox combobox = new ComboBox();
                 combobox.Text = "wybierz ćwiczenie";
                 combobox.Width = this.lista_cwiczen.Width * 0.8;
-                combobox.SelectionChanged += Combobox_SelectionChanged;
                 foreach(Exercise x in DataBase.exercises)
                 {
                     combobox.Items.Add(x);
                 }
-                TabItem tab = (TabItem)lista_cwiczen.Items[lista_cwiczen.SelectedIndex];
-                ListBox listbox2 = (ListBox)tab.Content;
-                listbox2.Items.Insert(listbox2.Items.Count - 1, combobox);
+                combobox.IsEditable = true;
 
-                listbox2.SelectedIndex = listbox2.Items.Count - 2;
+                panel.Children.Add(combobox);
+
+                Label label = new Label();
+                label.Content = "Ilość: ";
+                panel.Children.Add(label);
+
+                IntegerUpDown temp = new IntegerUpDown();
+                temp.Value = 1;
+                panel.Children.Add(temp);
+
+                Button button = new Button();
+                button.Content = "OK";
+                button.Click += Button_Click;
+                panel.Children.Add(button);
+
+
+                listbox.Items.Insert(listbox.Items.Count - 1, panel);
+                listbox.SelectedIndex = listbox.Items.Count - 2;
             }
         }
 
-        private void Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ComboBox comboBox = (ComboBox)sender;
-            int i;
-            TabItem x = (TabItem)lista_cwiczen.Items[lista_cwiczen.SelectedIndex];
-            ListBox listbox = (ListBox)x.Content;
-            for(i = 0; i < listbox.Items.Count; i++)
-            {
-                if (listbox.Items[i].GetType() == typeof(ComboBox) && listbox.Items[i]==comboBox)
-                {
-                    break;
-                }
-            }
-            Exercise exercise = (Exercise)comboBox.SelectedItem;
-            //tu dodać wybieranie ilości
-            listbox.Items[i] = addnewExercise(exercise, 5);
+            Button button = (Button)sender;
+            WrapPanel panel = (WrapPanel)button.Parent;
+            ComboBox comboBox = (ComboBox)panel.Children[0];
+            IntegerUpDown integerUpDown = (IntegerUpDown)panel.Children[2];
+            ListBox listBox = (ListBox)panel.Parent;
 
+            Exercise exercise;
+            try
+            {
+                exercise = (Exercise)comboBox.SelectedItem;
+                string abc = exercise.name;
+            }
+            catch (Exception)
+            {
+                System.Windows.MessageBox.Show("Nie wybrano ćwiczenia");
+                return;
+            }
+            if (integerUpDown.Value <= 0)
+            {
+                System.Windows.MessageBox.Show("Zła ilość powtórzeń");
+                return;
+            }
+            int amount = (int)integerUpDown.Value;
+            listBox.Items[listBox.Items.IndexOf(panel)] = addnewExercise(exercise, amount);
         }
 
         private void Tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -207,7 +236,7 @@ namespace FITAPP
                 }
                 if (count == 0)//wszystkie dni nie mają treningów
                 {
-                    MessageBox.Show("Nie dodano ćwiczeń");
+                    System.Windows.MessageBox.Show("Nie dodano ćwiczeń");
                     return;
                 }
                 else if (count == 1)//trening jednodniowy
@@ -253,7 +282,10 @@ namespace FITAPP
                 }
             }
             else
-                MessageBox.Show("Musisz podać nazwę treningu");
+            {
+                System.Windows.MessageBox.Show("Musisz podać nazwę treningu");
+                return;
+            }
             this.Close();
         }
 

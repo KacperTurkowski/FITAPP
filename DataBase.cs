@@ -9,6 +9,9 @@ namespace FITAPP
 {
     class DataBase
     {
+        public static Dish tempDish;
+        public static double tempDishAmount;
+
         public static Dictionary<string, string> passwords = new Dictionary<string, string>();//uzytkownicy
         public static Training todayT;//dzisiejszy trening
         public static Diet todayD;//dzisiejsza dieta

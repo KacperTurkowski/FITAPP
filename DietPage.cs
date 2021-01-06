@@ -9,13 +9,13 @@ using System.Windows.Input;
 
 namespace FITAPP
 {
-    class DietPage : Parentpage
+    public class DietPage : Parentpage
     {
         ListBox polubione_diety_listbox, diety;
         Label dostepne_diety, moja_aktualna_dieta, polubiona_dieta;
         Button dodaj_diete;
         ScrollViewer dzisiejsza_dieta, nastepna_dieta;
-        Grid grid;
+        public Grid grid;
         List<Diet> diets;
         TextBox searchDiets;
         public override Grid drawComponent(Grid grid)
@@ -150,8 +150,8 @@ namespace FITAPP
 
         private void Dodaj_Diete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie TrainingPage w metodzie \"Dodaj_trening_Click\"");
-
+            AddDiet addDiet = new AddDiet(this);
+            addDiet.Show();
         }
 
         public override Grid drawGrid(Grid grid)
