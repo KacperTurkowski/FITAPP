@@ -90,6 +90,7 @@ namespace FITAPP
             for(int i = 0; i < 6; i++)
             {
                 ListBox listbox = new ListBox();
+                listbox.SelectionChanged += Listbox_SelectionChanged;
                 Label label = new Label();
                 label.Content = "Dodaj nowy posiłek";
                 listbox.Items.Add(label);
@@ -100,6 +101,37 @@ namespace FITAPP
                 grid.Children.Add(listbox);
             }
 
+        }
+
+        private void Listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listbox = (ListBox)sender;
+            if(listbox.SelectedIndex == listbox.Items.Count - 1)
+            {
+                WrapPanel panel = new WrapPanel();
+
+                ComboBox comboBox = new ComboBox();
+                comboBox.ItemsSource = DataBase.dishes;
+                comboBox.Text = "Wybierz posiłek";
+                comboBox.IsEditable = true;
+                panel.Children.Add(comboBox);
+
+                Label label = new Label();
+                label.Content = "Ilość: ";
+                panel.Children.Add(label);
+
+                DoubleUpDown doubleUpDown = new DoubleUpDown();
+                doubleUpDown.Value = 1;
+                panel.Children.Add(doubleUpDown);
+
+                Button OK = new Button();
+                OK.Content = "OK";
+                panel.Children.Add(OK);
+
+                listbox.Items.Insert(listbox.Items.Count - 1, panel);
+                listbox.SelectedIndex = listbox.Items.Count - 2;
+
+            }
         }
 
         public Grid drawGrid(Grid grid)
