@@ -9,9 +9,6 @@ namespace FITAPP
 {
     class DataBase
     {
-        public static Dish tempDish;
-        public static double tempDishAmount;
-
         public static Dictionary<string, string> passwords = new Dictionary<string, string>();//uzytkownicy
         public static Training todayT;//dzisiejszy trening
         public static Diet todayD;//dzisiejsza dieta
@@ -24,6 +21,7 @@ namespace FITAPP
         public static Training nextTraining;//następny trening
         public static Diet nextDiet;//następna dieta
         public static List<Tag> trainingTag;
+        public static List<Tag> dietTags;
         static DataBase()//taki odpowiednik bloku statycznyego w Javie
         {
             passwords.Add("Kacper", "abc");
@@ -256,9 +254,11 @@ namespace FITAPP
             nextDiet = new Diet("nextD", tempD,amountD);
 
             trainingTag = new List<Tag> ();
+            dietTags = new List<Tag>();
             for(int i = 0; i < 20; i++)
             {
                 trainingTag.Add(new Tag(i+"tag"+i,""));
+                dietTags.Add(new Tag("tag" + i, ""));
             }
         }
     }
