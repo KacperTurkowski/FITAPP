@@ -20,16 +20,19 @@ namespace FITAPP
     /// </summary>
     public partial class MainWindow : Window
     {
+        int max = 7;
+        bool maximized;
         public MainWindow()
         {
             //Najpierw należy się zalogować
             Login oknoLogowania = new Login(this);
+            
             oknoLogowania.Show();
             this.Hide();
             //po wpisanniu loginu i hasła main się pokaże
             InitializeComponent();
             panel = getPanel(grid);
-            
+            this.strona_glowna.Content = " Strona\nGłówna";
             panel = new MainPage().drawGrid(panel);
             panel = new MainPage().drawComponent(panel);
         }
@@ -69,18 +72,48 @@ namespace FITAPP
 
         private void moje_konto_Click(object sender, RoutedEventArgs e)
         {
-            Moje_konto window = new Moje_konto();
-            window.Show();
+            MessageBox.Show("Ten scenariusz nie został zaprogramowany", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void posilki_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainWindow w metodzie \"posilki_Click\"");
+            MessageBox.Show("Ten scenariusz nie został zaprogramowany","Informacja",MessageBoxButton.OK,MessageBoxImage.Information);
         }
 
         private void cwiczenia_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ta akcja nie została obsłużona\n znajdziesz ją w klasie MainWindow w metodzie \"cwiczenia_Click\"");
+            MessageBox.Show("Ten scenariusz nie został zaprogramowany", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if(this.WindowState == WindowState.Maximized)
+            {
+                maximized = true;
+                this.moje_konto.FontSize += this.max;
+                this.wyloguj.FontSize += this.max;
+                this.strona_glowna.FontSize += this.max;
+                this.diety.FontSize += this.max;
+                this.posilki.FontSize += this.max;
+                this.cwiczenia.FontSize += this.max;
+                this.treningi.FontSize += this.max;
+            }
+            else
+            {
+                if(maximized == true)
+                {
+                    maximized = false;
+
+                    this.moje_konto.FontSize -= this.max;
+                    this.wyloguj.FontSize -= this.max;
+                    this.strona_glowna.FontSize -= this.max;
+                    this.diety.FontSize -= this.max;
+                    this.posilki.FontSize -= this.max;
+                    this.cwiczenia.FontSize -= this.max;
+                    this.treningi.FontSize -= this.max;
+                }
+
+            }
         }
     }
 }

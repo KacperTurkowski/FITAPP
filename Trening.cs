@@ -13,6 +13,7 @@ namespace FITAPP
         public List<Exercise> exercises = new List<Exercise>();
         public List<int> exerciseAmount = new List<int>();
         public double grade = 0.0;
+        public double average_grade = 0.0;
         public string description = "Brak opisu";
         public List<Tag> tags = new List<Tag>();
         public List<Exercise>[] exercisesD = new List<Exercise>[7];

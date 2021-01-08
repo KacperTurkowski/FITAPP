@@ -28,10 +28,12 @@ namespace FITAPP
             Button back = new Helper().getBackButton(grid, parentpage, "back", 0, 2, 0, 2);
             grid.Children.Add(back);
 
-            Label dietTitle = Helper.getLabel(diet.name + "_title", diet.name, 0, 3, 0, 16);
+            Label dietTitle = Helper.getLabel("_title", diet.name, 0, 3, 2, 30);
+            dietTitle.FontSize = 30;
             grid.Children.Add(dietTitle);
 
             Label lista_diet = Helper.getLabel("lista_diet", "Lista Posiłków", 3, 2, 0, 16);
+            lista_diet.FontSize = 25;
             grid.Children.Add(lista_diet);
 
             //listbox
@@ -40,25 +42,32 @@ namespace FITAPP
 
             Button szczegoly = Helper.getButton("szczegoly_diety", "Zobacz szczegóły diety", 16, 2, 1, 15);
             szczegoly.Click += Szczegoly_Click;
+            szczegoly.FontSize = 18;
+            szczegoly.Margin = new Thickness(5, 5, 5, 5);
             grid.Children.Add(szczegoly);
 
             //prawa strona
 
-            Label opis_diety = Helper.getLabel("opis_diety", "Opis Diet", 0, 3, 16, 16);
+            Label opis_diety = Helper.getLabel("opis_diety", "Opis Diet", 3, 3, 16, 16);
+            opis_diety.FontSize = 25;
             grid.Children.Add(opis_diety);
 
-            ScrollViewer opis = Helper.getTextBlock("opis", diet.description, 3, 6, 17, 14);
+            ScrollViewer opis = Helper.getTextBlock("opis", diet.description, 6, 3, 17, 14);
+            opis.FontSize = 16;
             grid.Children.Add(opis);
 
-            Button dodaj_do_ulubionych = Helper.getButton("dodaj_do_ulubionych", "Dodaj do ulubionych", 9, 2, 17, 6);
+            Button dodaj_do_ulubionych = Helper.getButton("dodaj_do_ulubionych", "  Dodaj do\n ulubionych", 9, 2, 17, 6);
+            dodaj_do_ulubionych.FontSize = 16;
             dodaj_do_ulubionych.Click += Dodaj_do_ulubionych_Click;
             grid.Children.Add(dodaj_do_ulubionych);
 
-            Button ustaw_jako_aktualna_diete = Helper.getButton("ustaw_jako_aktualna_diete", "Ustaw jako aktualną dietę", 9, 2, 25, 6);
+            Button ustaw_jako_aktualna_diete = Helper.getButton("ustaw_jako_aktualna_diete", "   Ustaw jako\n aktualną dietę", 9, 2, 25, 6);
             ustaw_jako_aktualna_diete.Click += Ustaw_jako_aktualna_diete_Click;
+            ustaw_jako_aktualna_diete.FontSize = 16;
             grid.Children.Add(ustaw_jako_aktualna_diete);
 
             ocen_diete = Helper.getLabel("ocen_diety", "Oceń dietę: ", 11, 2, 16, 5);
+            ocen_diete.FontSize = 18;
             grid.Children.Add(ocen_diete);
 
             //wybierz ocene
@@ -69,6 +78,7 @@ namespace FITAPP
 
             zapisz_ocene = Helper.getButton("zapisz_ocene", "Oceń na _", 11,2,27,4);
             zapisz_ocene.Click += Zapisz_ocene_Click;
+            zapisz_ocene.FontSize = 18;
             grid.Children.Add(zapisz_ocene);
 
 
@@ -99,6 +109,7 @@ namespace FITAPP
             foreach(Tag tag in diet.tags)
             {
                 Label label = new Label();
+                label.FontSize = 17;
                 label.Content = tag.name;
                 label.Background = Brushes.Gray;
                 label.Margin = new Thickness(5);
@@ -151,7 +162,6 @@ namespace FITAPP
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
-            grid.RowDefinitions.Add(new RowDefinition());
             for (int i = 0; i < 32; i++)
             {
                 ColumnDefinition column = new ColumnDefinition();

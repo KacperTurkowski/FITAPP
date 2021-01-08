@@ -17,14 +17,19 @@ namespace FITAPP
             this.grid = grid;
             //lewa strona
             Label training = Helper.getLabel("dzisiejszy_trening","Dzisiejszy Trening",0,3,0,16);
+            training.FontSize = 30;
+            training.FontStyle = FontStyles.Italic;
             grid.Children.Add(training);
 
-            Button otworz_dzisiejszy_trening = Helper.getButton("otworz_dzisiejszy_trening", "Otwórz Dzisiejszy Trening", 15, 3, 9, 6);
+            Button otworz_dzisiejszy_trening = Helper.getButton("otworz_dzisiejszy_trening", "Otwórz Dzisiejszy\n        Trening", 15, 3, 9, 6);
+            otworz_dzisiejszy_trening.Margin = new Thickness(5);
+            otworz_dzisiejszy_trening.FontSize = 17;
             otworz_dzisiejszy_trening.Click += otworz_dzisiejszy_trening_Click;
             grid.Children.Add(otworz_dzisiejszy_trening);
             if (DataBase.todayT.exercises.Count != 0)
             {
                 Label trainingName = Helper.getLabel("nazwa_treningu", DataBase.todayT.name, 3, 3, 0, 16);
+                trainingName.FontSize = 25;
                 grid.Children.Add(trainingName);
 
                 listBox = Helper.getListBox(DataBase.todayT.exercises, "treningi", 6, 8, 1, 14);
@@ -34,18 +39,24 @@ namespace FITAPP
             else
             {
                 Label trainingName = Helper.getLabel("nazwa_treningu", "Dzisiaj jest dzień bez treningu", 3, 3, 0, 16);
+                trainingName.FontSize = 25;
                 grid.Children.Add(trainingName);
             }
             //prawa strona
 
             Label diet = Helper.getLabel("dzisiejsza_dieta", "Dzisiejsza Dieta", 0,3,16, 16);
+            diet.FontSize = 30;
+            diet.FontStyle = FontStyles.Italic;
             grid.Children.Add(diet);
 
-            Button otworz_dzisiejsza_diete = Helper.getButton("otworz_dzisiejsza_diete", "Otwórz Dzisiejszą Dietę", 15, 3, 25, 6);
+            Button otworz_dzisiejsza_diete = Helper.getButton("otworz_dzisiejsza_diete", "Otwórz Dzisiejszą\n          Dietę", 15, 3, 25, 6);
             otworz_dzisiejsza_diete.Click += Otworz_dzisiejsza_diete_Click;
+            otworz_dzisiejsza_diete.FontSize = 17;
+            otworz_dzisiejsza_diete.Margin = new Thickness(5);
             grid.Children.Add(otworz_dzisiejsza_diete);
 
             Label dietName = Helper.getLabel("nazwa_diety", DataBase.todayD.name, 3, 3, 16, 16);
+            dietName.FontSize = 25;
             grid.Children.Add(dietName);
 
 
@@ -76,7 +87,6 @@ namespace FITAPP
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
-            grid.RowDefinitions.Add(new RowDefinition());
             for(int i = 0; i < 32; i++)
             {
                 ColumnDefinition column = new ColumnDefinition();

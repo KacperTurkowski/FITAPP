@@ -182,84 +182,423 @@ namespace FITAPP
             d10.carbs = 12.7;
             dishes.Add(d10);
 
-            trainings = new List<Training>();
-            for (int i = 0; i < 50; i++)
-            {
-                trainings.Add(new Training("training" + i, exercises.GetRange(0, 10), new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }));
-            }
-            List<Tag> tags = new List<Tag> { new Tag("tag1", "a"), new Tag("tag2", "b") };
-            todayT = new Training("Wydolnościowy", exercises.GetRange(0, 5), new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
-            todayT.tags = tags;
+            trainingTag = new List<Tag>();
 
-            diets = new List<Diet>();
-            Random rnd = new Random();
-            for (int i = 0; i < 50; i++)
-            {
-                List<Dish>[] tempDish = new List<Dish>[6];
-                List<double>[] amount = new List<double>[6];
-                for (int j = 0; j < 6; j++)
-                {
-                    tempDish[j] = new List<Dish>();
-                    tempDish[j].AddRange(dishes.GetRange(j, 3));
+            Tag tr1 = new Tag("Brazylijskie Posladki", "");
+            Tag tr2 = new Tag("Klatka Piersiowa", "");
+            Tag tr3 = new Tag("Płaski brzuch", "");
+            Tag tr4 = new Tag("Wielki Biceps", "");
+            Tag tr5 = new Tag("Triceps", "");
+            Tag tr6 = new Tag("Góra ciała", "");
+            Tag tr7 = new Tag("Nogi", "");
+            Tag tr8 = new Tag("Plecy", "");
+            Tag tr9 = new Tag("Przedramię", "");
+            Tag tr10 = new Tag("Core ciała", "");
+            Tag tr11 = new Tag("Wydolność", "");
+            Tag tr12 = new Tag("Cardio", "");
 
-                    amount[j] = new List<double> {rnd.NextDouble(),rnd.NextDouble(),rnd.NextDouble() };
-                }
-                diets.Add(new Diet("diet" + i, tempDish,amount));
-            }
-            List<Dish>[,] test = new List<Dish>[7, 6];
-            for (int i = 0; i < 7; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    test[i, j] = new List<Dish>();
-                    test[i, j].AddRange(dishes.GetRange(0, 5));
-                }
-            }
+            trainingTag.Add(tr1);
+            trainingTag.Add(tr2);
+            trainingTag.Add(tr3);
+            trainingTag.Add(tr4);
+            trainingTag.Add(tr5);
+            trainingTag.Add(tr6);
+            trainingTag.Add(tr7);
+            trainingTag.Add(tr8);
+            trainingTag.Add(tr9);
+            trainingTag.Add(tr10);
+            trainingTag.Add(tr11);
+            trainingTag.Add(tr12);
 
-            //dzsiejsza dieta
-            todayD = diets[5];
-            todayD.tags = tags;
-
-            //polubione treningi
-            likedTrainings = trainings.GetRange(10, 5);
-            likedDiets = diets.GetRange(10, 5);
-
-            //następny trening
-            List<Exercise>[] temp = new List<Exercise>[7];
-            List<int>[] tempAmount = new List<int>[7];
-            for (int i = 0; i < 7; i++)
-            {
-                temp[i] = new List<Exercise>();
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                temp[i].AddRange(exercises.GetRange(0, 5));
-                tempAmount[i] = new List<int> { 1, 2, 3, 4, 5 };
-            }
-
-            nextTraining = new Training("test", temp, tempAmount);
-            //następna dieta
-            List<Dish>[,] tempD = new List<Dish>[7, 6];
-            List<double>[,] amountD = new List<double>[7, 6];
-            for (int i = 0; i < 7; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    tempD[i, j] = new List<Dish>();
-                    tempD[i, j].AddRange(dishes.GetRange(i, 2));
-
-                    amountD[i, j] = new List<double>{rnd.NextDouble(), rnd.NextDouble()};
-                }
-            }
-            nextDiet = new Diet("nextD", tempD,amountD);
-
-            trainingTag = new List<Tag> ();
+            //tagi diety
             dietTags = new List<Tag>();
-            for(int i = 0; i < 20; i++)
+
+            Tag di1 = new Tag("Wegetarianska", "");
+            Tag di2 = new Tag("Ketogeniczna", "");
+            Tag di3 = new Tag("Paleolityczna", "");
+            Tag di4 = new Tag("Ducana", "");
+            Tag di5 = new Tag("Atkinsa", "");
+            Tag di6 = new Tag("Cukrzycowa", "");
+            Tag di7 = new Tag("Lekkostrawna", "");
+
+            dietTags.Add(di1);
+            dietTags.Add(di2);
+            dietTags.Add(di3);
+            dietTags.Add(di4);
+            dietTags.Add(di5);
+            dietTags.Add(di6);
+            dietTags.Add(di7);
+
+            //treningi
+            trainings = new List<Training>();
+
+            List<Exercise> extemp = new List<Exercise>();
+            List<int> amt = new List<int>();
+            amt.Add(12);
+            amt.Add(8);
+            amt.Add(12);
+            amt.Add(9);
+            extemp.Add(exercises[0]);
+            extemp.Add(exercises[3]);
+            extemp.Add(exercises[4]);
+            extemp.Add(exercises[9]);
+            Training oneday = new Training("Jednodniowy trening góry ciała", extemp, amt);
+            oneday.description = "Jednodniowy trening Góry ciała przeznaczony dla sportowców chcących rozbudować swoją klatkę piersiową oraz barki";
+            oneday.tags = new List<Tag> { trainingTag[1], trainingTag[3], trainingTag[5] };
+            oneday.average_grade = 4.3;
+            trainings.Add(oneday);
+
+            List<Exercise>[] extemp2 = new List<Exercise>[7];
+            List<int>[] exAmount2 = new List<int>[7];
+            for(int i = 0; i < 7; i++)
             {
-                trainingTag.Add(new Tag(i+"tag"+i,""));
-                dietTags.Add(new Tag("tag" + i, ""));
+                extemp2[i] = new List<Exercise>();
+                exAmount2[i] = new List<int>();
             }
+            extemp2[0].Add(exercises[0]);
+            extemp2[0].Add(exercises[3]);
+            extemp2[0].Add(exercises[9]);
+
+            exAmount2[0].Add(12);
+            exAmount2[0].Add(8);
+            exAmount2[0].Add(9);
+
+            extemp2[1].Add(exercises[1]);
+            extemp2[1].Add(exercises[2]);
+            extemp2[1].Add(exercises[5]);
+
+            exAmount2[1].Add(5);
+            exAmount2[1].Add(5);
+            exAmount2[1].Add(16);
+
+            extemp2[2].Add(exercises[7]);
+            extemp2[2].Add(exercises[4]);
+            extemp2[2].Add(exercises[8]);
+
+            exAmount2[2].Add(10);
+            exAmount2[2].Add(8);
+            exAmount2[2].Add(5);
+
+            Training fewday = new Training("Trzydniowy trening wielofunkcyjny", extemp2, exAmount2);
+            fewday.description = "Trzydniowy trening całego ciała pozwalający na zachowanie równowagi pomiędzy każdą partią mięśniową";
+            fewday.tags = new List<Tag> { trainingTag[1], trainingTag[3], trainingTag[5], trainingTag[9] };
+            fewday.average_grade = 3.9;
+            trainings.Add(fewday);
+
+            List<Exercise>[] extemp3 = new List<Exercise>[7];
+            List<int>[] exAmount3 = new List<int>[7];
+            for(int i = 0; i < 7; i++)
+            {
+                extemp3[i] = new List<Exercise>();
+                exAmount3[i] = new List<int>();
+            }
+            extemp3[0].Add(exercises[0]);
+            extemp3[0].Add(exercises[3]);
+
+            exAmount3[0].Add(12);
+            exAmount3[0].Add(8);
+
+            extemp3[1].Add(exercises[2]);
+            extemp3[1].Add(exercises[5]);
+
+            exAmount3[1].Add(5);
+            exAmount3[1].Add(12);
+
+            extemp3[2].Add(exercises[1]);
+            extemp3[2].Add(exercises[9]);
+
+            exAmount3[2].Add(9);
+            exAmount3[2].Add(5);
+
+            extemp3[3].Add(exercises[8]);
+            extemp3[3].Add(exercises[5]);
+
+            exAmount3[3].Add(6);
+            exAmount3[3].Add(16);
+
+            extemp3[4].Add(exercises[6]);
+            extemp3[4].Add(exercises[4]);
+
+            exAmount3[4].Add(3);
+            exAmount3[4].Add(14);
+
+            extemp3[5].Add(exercises[2]);
+            extemp3[5].Add(exercises[6]);
+
+            exAmount3[5].Add(8);
+            exAmount3[5].Add(12);
+
+            extemp3[6].Add(exercises[5]);
+            extemp3[6].Add(exercises[7]);
+
+            exAmount3[6].Add(7);
+            exAmount3[6].Add(14);
+
+
+            Training weekday = new Training("Całotygodniowa Aktywność", extemp3, exAmount3);
+            weekday.description = "Całotygodniowy trening pozwalający na zachowanie swojej masy mięśniowej a także spalenie nadmiarowej tkanki tłuszczowej";
+            weekday.tags = new List<Tag> { trainingTag[6], trainingTag[7], trainingTag[8], trainingTag[9], trainingTag[10] };
+            weekday.average_grade = 3.2;
+            trainings.Add(weekday);
+
+            todayT = trainings[0];
+            nextTraining = trainings[1];
+            likedTrainings = new List<Training>();
+            likedTrainings.Add(trainings[2]);
+            likedTrainings.Add(trainings[0]);
+
+           
+            diets = new List<Diet>();
+            List<Dish>[] dishtemp = new List<Dish>[6];
+            List<double>[] dishAmount = new List<double>[6];
+            for(int i = 0; i < 6; i++)
+            {
+                dishtemp[i] = new List<Dish>();
+                dishAmount[i] = new List<double>();
+            }
+            dishtemp[0].Add(dishes[0]);
+            dishtemp[0].Add(dishes[2]);
+            dishtemp[1].Add(dishes[4]);
+            dishtemp[2].Add(dishes[5]);
+            dishtemp[3].Add(dishes[9]);
+            dishtemp[4].Add(dishes[2]);
+            dishtemp[5].Add(dishes[7]);
+
+            dishAmount[0].Add(0.5);
+            dishAmount[0].Add(0.5);
+            dishAmount[1].Add(1);
+            dishAmount[2].Add(1.5);
+            dishAmount[3].Add(3);
+            dishAmount[4].Add(0.5);
+            dishAmount[5].Add(1);
+            
+            Diet onediet = new Diet("Jednodniowa dieta rozbudowująca masę mięśniową", dishtemp, dishAmount);
+            onediet.description = "Dieta pełna smakowitych dań, zawierających przy tym odpowiednie dawki protein niezbędnych dla organizmu w procesie budowania masy mięśniowej";
+            
+            List<Tag> tempTag = new List<Tag>();
+            onediet.tags = new List<Tag> { dietTags[4], dietTags[6] };
+            onediet.average_grade = 3.54;
+            
+            diets.Add(onediet);
+
+            List<Dish>[,] dishtemp2 = new List<Dish>[7, 6];
+            List<double>[,] dishAmount2 = new List<double>[7, 6];
+
+            for(int i = 0; i < 7; i++)
+            {
+                for(int j = 0; j < 6; j++)
+                {
+                    dishtemp2[i,j] = new List<Dish>();
+                    dishAmount2[i,j] = new List<double>();
+                }
+            }
+
+            dishtemp2[0, 0].Add(dishes[0]);
+            dishtemp2[0, 1].Add(dishes[4]);
+            dishtemp2[0, 2].Add(dishes[5]);
+            dishtemp2[0, 3].Add(dishes[9]);
+            dishtemp2[0, 4].Add(dishes[2]);
+            dishtemp2[0, 5].Add(dishes[7]);
+
+            dishAmount2[0, 0].Add(2);
+            dishAmount2[0, 1].Add(1);
+            dishAmount2[0, 2].Add(1.5);
+            dishAmount2[0, 3].Add(3);
+            dishAmount2[0, 4].Add(0.5);
+            dishAmount2[0, 5].Add(1);
+
+            dishtemp2[1, 0].Add(dishes[6]);
+            dishtemp2[1, 1].Add(dishes[8]);
+            dishtemp2[1, 2].Add(dishes[3]);
+            dishtemp2[1, 3].Add(dishes[1]);
+            dishtemp2[1, 4].Add(dishes[0]);
+            dishtemp2[1, 5].Add(dishes[7]);
+
+            dishAmount2[1, 0].Add(1);
+            dishAmount2[1, 1].Add(2.5);
+            dishAmount2[1, 2].Add(1.5);
+            dishAmount2[1, 3].Add(0.5);
+            dishAmount2[1, 4].Add(2);
+            dishAmount2[1, 5].Add(1);
+
+            dishtemp2[2, 0].Add(dishes[7]);
+            dishtemp2[2, 1].Add(dishes[3]);
+            dishtemp2[2, 2].Add(dishes[4]);
+            dishtemp2[2, 3].Add(dishes[5]);
+            dishtemp2[2, 4].Add(dishes[9]);
+            dishtemp2[2, 5].Add(dishes[1]);
+
+            dishAmount2[2, 0].Add(1.5);
+            dishAmount2[2, 1].Add(1);
+            dishAmount2[2, 2].Add(1.5);
+            dishAmount2[2, 3].Add(1.5);
+            dishAmount2[2, 4].Add(2.5);
+            dishAmount2[2, 5].Add(1);
+
+            dishtemp2[3, 0].Add(dishes[0]);
+            dishtemp2[3, 1].Add(dishes[5]);
+            dishtemp2[3, 2].Add(dishes[8]);
+            dishtemp2[3, 3].Add(dishes[2]);
+            dishtemp2[3, 4].Add(dishes[6]);
+            dishtemp2[3, 5].Add(dishes[7]);
+
+            dishAmount2[3, 0].Add(2);
+            dishAmount2[3, 1].Add(1);
+            dishAmount2[3, 2].Add(1.5);
+            dishAmount2[3, 3].Add(3);
+            dishAmount2[3, 4].Add(0.5);
+            dishAmount2[3, 5].Add(1);
+
+            dishtemp2[4, 0].Add(dishes[4]);
+            dishtemp2[4, 1].Add(dishes[6]);
+            dishtemp2[4, 2].Add(dishes[8]);
+            dishtemp2[4, 3].Add(dishes[3]);
+            dishtemp2[4, 4].Add(dishes[2]);
+            dishtemp2[4, 5].Add(dishes[9]);
+
+            dishAmount2[4, 0].Add(2.5);
+            dishAmount2[4, 1].Add(1);
+            dishAmount2[4, 2].Add(0.5);
+            dishAmount2[4, 3].Add(2);
+            dishAmount2[4, 4].Add(0.5);
+            dishAmount2[4, 5].Add(1);
+
+
+            dishtemp2[5, 0].Add(dishes[0]);
+            dishtemp2[5, 1].Add(dishes[3]);
+            dishtemp2[5, 2].Add(dishes[7]);
+            dishtemp2[5, 3].Add(dishes[8]);
+            dishtemp2[5, 4].Add(dishes[2]);
+            dishtemp2[5, 5].Add(dishes[7]);
+       
+            dishAmount2[5, 0].Add(2);
+            dishAmount2[5, 1].Add(1);
+            dishAmount2[5, 2].Add(1.5);
+            dishAmount2[5, 3].Add(1.5);
+            dishAmount2[5, 4].Add(1.5);
+            dishAmount2[5, 5].Add(1);
+
+            dishtemp2[6, 0].Add(dishes[4]);
+            dishtemp2[6, 1].Add(dishes[3]);
+            dishtemp2[6, 2].Add(dishes[7]);
+            dishtemp2[6, 3].Add(dishes[5]);
+            dishtemp2[6, 4].Add(dishes[1]);
+            dishtemp2[6, 5].Add(dishes[9]);
+
+            dishAmount2[6, 0].Add(2);
+            dishAmount2[6, 1].Add(1);
+            dishAmount2[6, 2].Add(1.5);
+            dishAmount2[6, 3].Add(3);
+            dishAmount2[6, 4].Add(0.5);
+            dishAmount2[6, 5].Add(1);
+
+
+            Diet fulldiet = new Diet("Całotygodniowa dieta na masę", dishtemp, dishAmount);
+            fulldiet.description = "Dieta pełna smakowitych dań, zawierających przy tym odpowiednie dawki protein niezbędnych dla organizmu w procesie budowania masy mięśniowej. Każdy posiłek posiada dostosowane ilości makroskładników dzięki czemu zapewnia energię na progresję objętości oraz częstotliwości treningów";
+            fulldiet.tags = new List<Tag> { dietTags[4], dietTags[6], dietTags[1] };
+            fulldiet.average_grade = 4.7;
+            diets.Add(fulldiet);
+
+            List<Dish>[] dishtemp1 = new List<Dish>[6];
+            List<double>[] dishAmount1 = new List<double>[6];
+            for(int i = 0; i < 6; i++)
+            {
+                dishtemp1[i] = new List<Dish>();
+                dishAmount1[i] = new List<double>();
+            }
+
+            dishtemp1[0].Add(dishes[0]);
+            dishtemp1[0].Add(dishes[2]);
+            dishtemp1[1].Add(dishes[4]);
+            dishtemp1[2].Add(dishes[5]);
+            dishtemp1[3].Add(dishes[9]);
+            dishtemp1[4].Add(dishes[2]);
+            dishtemp1[5].Add(dishes[7]);
+
+            dishAmount1[0].Add(0.5);
+            dishAmount1[0].Add(0.5);
+            dishAmount1[1].Add(1);
+            dishAmount1[2].Add(1.5);
+            dishAmount1[3].Add(3);
+            dishAmount1[4].Add(0.5);
+            dishAmount1[5].Add(1);
+
+            Diet onediet1 = new Diet("Jednodniowa dieta wegetariańska dla cukrzyków", dishtemp1, dishAmount1);
+            onediet1.description = "Dieta odpowiednia dla osób chorych na cukrzyce oraz odrzucających jedzenie zwierząt.";
+            onediet1.tags = new List<Tag> { dietTags[0], dietTags[6] };
+            onediet1.average_grade = 4.22;
+            diets.Add(onediet1);
+
+            List<Dish>[] dishtemp4 = new List<Dish>[6];
+            List<double>[] dishAmount4 = new List<double>[6];
+
+            for(int i = 0; i < 6; i++)
+            {
+                dishtemp4[i] = new List<Dish>();
+                dishAmount4[i] = new List<double>();
+            }
+
+            dishtemp4[0].Add(dishes[0]);
+            dishtemp4[0].Add(dishes[2]);
+            dishtemp4[1].Add(dishes[4]);
+            dishtemp4[2].Add(dishes[5]);
+            dishtemp4[3].Add(dishes[9]);
+            dishtemp4[4].Add(dishes[2]);
+            dishtemp4[5].Add(dishes[7]);
+
+            dishAmount4[0].Add(0.5);
+            dishAmount4[0].Add(0.5);
+            dishAmount4[1].Add(1);
+            dishAmount4[2].Add(1.5);
+            dishAmount4[3].Add(3);
+            dishAmount4[4].Add(0.5);
+            dishAmount4[5].Add(1);
+
+            Diet onediet2 = new Diet("Ketogeniczna dieta na redukcję", dishtemp2, dishAmount2);
+            onediet2.description = "Dieta dla osób chcących zrzucić nadmiar kalorii poprzez stan ketozy";
+            onediet2.tags = new List<Tag> { dietTags[1], dietTags[6] };
+            onediet2.average_grade = 3.94;
+
+            diets.Add(onediet2);
+
+            List<Dish>[] dishtemp3 = new List<Dish>[6];
+            List<double>[] dishAmount3 = new List<double>[6];
+
+            for(int i = 0; i < 6; i++)
+            {
+                dishtemp3[i] = new List<Dish>();
+                dishAmount3[i] = new List<double>();
+            }
+
+            dishtemp3[0].Add(dishes[0]);
+            dishtemp3[0].Add(dishes[2]);
+            dishtemp3[1].Add(dishes[4]);
+            dishtemp3[2].Add(dishes[5]);
+            dishtemp3[3].Add(dishes[9]);
+            dishtemp3[4].Add(dishes[2]);
+            dishtemp3[5].Add(dishes[7]);
+
+            dishAmount3[0].Add(0.5);
+            dishAmount3[0].Add(0.5);
+            dishAmount3[1].Add(1);
+            dishAmount3[2].Add(1.5);
+            dishAmount3[3].Add(3);
+            dishAmount3[4].Add(0.5);
+            dishAmount3[5].Add(1);
+
+            Diet onediet3 = new Diet("Lekkostrawna jednodniowa dieta Atkinsa", dishtemp3, dishAmount3);
+            onediet3.description = "Dieta dla osób z problemami żołądkowymi spełniająca zalecenia dr Roberta Atkinsa";
+            onediet3.tags = new List<Tag> { dietTags[6], dietTags[4] };
+            onediet3.average_grade = 4.36;
+
+            diets.Add(onediet3);
+
+            todayD = diets[0];
+
+            likedDiets = new List<Diet>();
+            likedDiets.Add(diets[0]);
+            likedDiets.Add(diets[1]);
+            nextDiet = diets[1];
         }
     }
 }

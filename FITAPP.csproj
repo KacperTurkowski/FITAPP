@@ -86,9 +86,6 @@
     <Compile Include="DietPage.cs" />
     <Compile Include="Dish.cs" />
     <Compile Include="Exercise.cs" />
-    <Compile Include="Moje_konto.xaml.cs">
-      <DependentUpon>Moje_konto.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SetAsCurrentTraining.xaml.cs">
       <DependentUpon>SetAsCurrentTraining.xaml</DependentUpon>
     </Compile>
@@ -131,10 +128,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Moje_konto.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="SetAsCurrentTraining.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

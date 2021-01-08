@@ -26,33 +26,41 @@ namespace FITAPP
             Button back = new Helper().getBackButton(grid, parentpage, "back", 0, 2, 0, 2);
             grid.Children.Add(back);
 
-            Label trainingTitle = Helper.getLabel(training.name + "_title", training.name, 0, 3, 0, 16);
+            Label trainingTitle = Helper.getLabel("_title", training.name, 0, 3, 2, 30);
+            trainingTitle.FontSize = 30;
             grid.Children.Add(trainingTitle);
 
             Label lista_cwiczen = Helper.getLabel("lista_cwiczen", "Lista Ćwiczeń", 3, 2, 0, 16);
+            lista_cwiczen.FontSize = 25;
             grid.Children.Add(lista_cwiczen);
 
             //listbox
             TabControl lista_cwiczen_list = new Helper().GetTabControl_T(this,grid,training, "lista-cwiczen_list", 5, 13, 1, 15);
+            lista_cwiczen_list.Margin = new Thickness(0, 0, 0, 5);
             grid.Children.Add(lista_cwiczen_list);
 
             //prawa strona
 
-            Label opis_treningu = Helper.getLabel("opis_treningu", "Opis Treningu", 0, 3, 16, 16);
+            Label opis_treningu = Helper.getLabel("opis_treningu", "Opis Treningu", 3, 3, 16, 16);
+            opis_treningu.FontSize = 25;
             grid.Children.Add(opis_treningu);
 
-            ScrollViewer opis = Helper.getTextBlock("opis", training.description, 3, 6, 17, 14);
+            ScrollViewer opis = Helper.getTextBlock("opis", training.description, 6, 3, 17, 14);
+            opis.FontSize = 16;
             grid.Children.Add(opis);
 
-            Button dodaj_do_ulubionych = Helper.getButton("dodaj_do_ulubionych", "Dodaj do ulubionych", 9, 2, 17, 6);
+            Button dodaj_do_ulubionych = Helper.getButton("dodaj_do_ulubionych", "  Dodaj do\n ulubionych", 9, 2, 17, 6);
+            dodaj_do_ulubionych.FontSize = 16;
             dodaj_do_ulubionych.Click += Dodaj_do_ulubionych_Click;
             grid.Children.Add(dodaj_do_ulubionych);
 
-            Button ustaw_jako_aktualny_trening = Helper.getButton("ustaw_jako_aktualny_trening", "Ustaw jako aktualny trening", 9, 2, 25, 6);
+            Button ustaw_jako_aktualny_trening = Helper.getButton("ustaw_jako_aktualny_trening", "Ustaw jako aktualny\n          trening", 9, 2, 25, 6);
+            ustaw_jako_aktualny_trening.FontSize = 16;
             ustaw_jako_aktualny_trening.Click += Ustaw_jako_aktualny_trening_Click;
             grid.Children.Add(ustaw_jako_aktualny_trening);
 
             ocen_trening = Helper.getLabel("ocen_diety", "Oceń dietę: ", 11, 2, 16, 5);
+            ocen_trening.FontSize = 18;
             grid.Children.Add(ocen_trening);
 
             grade = Helper.getSlider("ocen_diete", 11, 2, 21, 6);
@@ -61,6 +69,7 @@ namespace FITAPP
             grid.Children.Add(grade);
 
             zapisz_ocene = Helper.getButton("zapisz_ocene", "Oceń na _", 11, 2, 27, 4);
+            zapisz_ocene.FontSize = 18;
             zapisz_ocene.Click += Zapisz_ocene_Click;
             grid.Children.Add(zapisz_ocene);
 
@@ -82,7 +91,7 @@ namespace FITAPP
 
             WrapPanel list = new WrapPanel();
 
-
+            
             list.Orientation = Orientation.Horizontal;
             list.HorizontalAlignment = HorizontalAlignment.Left;
             list.VerticalAlignment = VerticalAlignment.Top;
@@ -92,6 +101,7 @@ namespace FITAPP
             foreach (Tag tag in training.tags)
             {
                 Label label = new Label();
+                label.FontSize = 17;
                 label.Content = tag.name;
                 label.Background = Brushes.Gray;
                 label.Margin = new Thickness(5);
@@ -141,7 +151,6 @@ namespace FITAPP
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
-            grid.RowDefinitions.Add(new RowDefinition());
             for (int i = 0; i < 32; i++)
             {
                 ColumnDefinition column = new ColumnDefinition();

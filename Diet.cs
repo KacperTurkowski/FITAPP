@@ -14,6 +14,7 @@ namespace FITAPP
         public bool manyDays;//czy jest to dieta wielodniowa
 
         public double grade = 0.0;//ocena diety
+        public double average_grade = 0.0;
         public string description = "Brak opisu";//opis diety
 
         public List<Tag> tags = new List<Tag>();//tagi

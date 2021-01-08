@@ -41,9 +41,11 @@ namespace FITAPP
                 Grid.SetRowSpan(tab, 16);
 
                 Label title = Helper.getLabel("tytul_diety", diet.name, 0, 2, 2, 16);
+                title.FontSize = 25;
                 grid.Children.Add(title);
                 
                 nutritional = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list_day[0]) + "   B: " + string.Format("{0:.00}", diet.protein_list_day[0]) + "   T: " + string.Format("{0:.00}", diet.fat_list_day[0]) + "   W: " + string.Format("{0:.00}", diet.carbs_list_day[0]) + "g", 0, 2, 18, 14);
+                nutritional.FontSize = 15;
                 grid.Children.Add(nutritional);
 
 
@@ -58,63 +60,69 @@ namespace FITAPP
 
 
                     Label sniadanie_tytul = Helper.getLabel("sniadanie_tytul", "Śniadanie", 0, 2, 0, 10);
+                    sniadanie_tytul.FontSize = 20;
                     gridInTab.Children.Add(sniadanie_tytul);
 
                     sniadanie = Helper.getListBox(diet.dish_list[i,0], "sniadanie_posilki", 2, 6, 0, 10);
                     sniadanie.SelectionChanged += Sniadanie_SelectionChanged_T;
                     gridInTab.Children.Add(sniadanie);
 
-                    sniadanie_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0,0]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 0]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 0]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 0]) + "g", 8, 1, 0,10);
+                    sniadanie_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0,0]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 0]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 0]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 0]) + "g", 8, 2, 0,10);
                     gridInTab.Children.Add(sniadanie_nutr);
 
                     Label IIsniadanie_tytul = Helper.getLabel("IIsniadanie_tytul", "II Śniadanie", 0, 2, 11, 10);
+                    IIsniadanie_tytul.FontSize = 20;
                     gridInTab.Children.Add(IIsniadanie_tytul);
 
                     IIsniadanie = Helper.getListBox(diet.dish_list[i,1], "IIsniadanie_posilki", 2, 6, 11, 10);
                     IIsniadanie.SelectionChanged += IIsniadanie_SelectionChanged_T;
                     gridInTab.Children.Add(IIsniadanie);
 
-                    IIsniadanie_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 1]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 1]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 1]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 1]) + "g", 8, 1, 11, 10);
+                    IIsniadanie_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 1]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 1]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 1]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 1]) + "g", 8, 2, 11, 10);
                     gridInTab.Children.Add(IIsniadanie_nutr);
 
                     Label lunch_tytul = Helper.getLabel("lunch_tytul", "Lunch", 0, 2, 22, 10);
+                    lunch_tytul.FontSize = 20;
                     gridInTab.Children.Add(lunch_tytul);
 
                     lunch = Helper.getListBox(diet.dish_list[i, 2], "lunch_posilki", 2, 6, 22, 10);
                     lunch.SelectionChanged += Lunch_SelectionChanged_T;
                     gridInTab.Children.Add(lunch);
 
-                    lunch_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 2]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 2]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 2]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 2]) + "g", 8, 1, 22, 10);
+                    lunch_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 2]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 2]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 2]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 2]) + "g", 8, 2, 22, 10);
                     gridInTab.Children.Add(lunch_nutr);
 
                     Label obiad_tytul = Helper.getLabel("obiad_tytul", "Obiad", 9, 2, 0, 10);
+                    obiad_tytul.FontSize = 20;
                     gridInTab.Children.Add(obiad_tytul);
 
                     obiad = Helper.getListBox(diet.dish_list[i,3], "obiad_posilki", 11, 6, 0, 10);
                     obiad.SelectionChanged += Obiad_SelectionChanged_T;
                     gridInTab.Children.Add(obiad);
 
-                    obiad_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 3]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 3]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 3]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 3]) + "g", 17, 1, 0, 10);
+                    obiad_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 3]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 3]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 3]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 3]) + "g", 17, 2, 0, 10);
                     gridInTab.Children.Add(obiad_nutr);
 
                     Label przekaska_tytul = Helper.getLabel("przekaska_tytul", "Przekąska", 9, 2, 11, 10);
+                    przekaska_tytul.FontSize = 20;
                     gridInTab.Children.Add(przekaska_tytul);
 
                     przekaska = Helper.getListBox(diet.dish_list[i,4], "przekaska_posilki", 11, 6, 11, 10);
                     przekaska.SelectionChanged += Przekaska_SelectionChanged_T;
                     gridInTab.Children.Add(przekaska);
 
-                    przekaska_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 4]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 4]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 4]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 4]) + "g", 17, 1, 11, 10);
+                    przekaska_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 4]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 4]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 4]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 4]) + "g", 17, 2, 11, 10);
                     gridInTab.Children.Add(przekaska_nutr);
 
                     Label kolacja_tytul = Helper.getLabel("kolacja_tytul", "Kolacja", 9, 2, 22, 10);
+                    kolacja_tytul.FontSize = 20;
                     gridInTab.Children.Add(kolacja_tytul);
 
                     kolacja = Helper.getListBox(diet.dish_list[i,5], "kolacja_posilki", 11, 6, 22, 10);
                     kolacja.SelectionChanged += Kolacja_SelectionChanged_T;
                     gridInTab.Children.Add(kolacja);
 
-                    kolacja_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 5]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 5]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 5]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 5]) + "g", 17, 1,22, 10);
+                    kolacja_nutr = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal_list[0, 5]) + "   B: " + string.Format("{0:.00}", diet.protein_list[0, 5]) + "   T: " + string.Format("{0:.00}", diet.fat_list[0, 5]) + "   W: " + string.Format("{0:.00}", diet.carbs_list[0, 5]) + "g", 17, 2,22, 10);
                     gridInTab.Children.Add(kolacja_nutr);
 
 
@@ -128,71 +136,86 @@ namespace FITAPP
                 grid.Children.Add(back);
 
                 Label title = Helper.getLabel("tytul_diety", diet.name, 0, 2, 2, 16);
+                title.FontSize = 25;
                 grid.Children.Add(title);
 
                 nutritional = Helper.getLabel("wartosc_odzywcze", "Kcal: " + string.Format("{0:.00}", diet.kcal) + "   B: " + string.Format("{0:.00}", diet.protein) + "   T: " + string.Format("{0:.00}", diet.fat) + "   W: " + string.Format("{0:.00}", diet.carbs) + "g", 0, 2, 18, 14);
+                nutritional.FontSize = 15;
                 grid.Children.Add(nutritional);
 
                 Label sniadanie_tytul = Helper.getLabel("sniadanie_tytul", "Śniadanie", 2, 2, 0, 10);
+                sniadanie_tytul.FontSize = 20;
                 grid.Children.Add(sniadanie_tytul);
 
                 sniadanie = Helper.getListBox(diet.dish_one_day[0], "sniadanie_posilki", 4, 5, 0, 10);
                 sniadanie.SelectionChanged += Sniadanie_SelectionChanged;
+                sniadanie.Margin = new Thickness(3, 0, 3, 0);
                 grid.Children.Add(sniadanie);
 
-                Label nutritional_sniadanie = Helper.getLabel("wartosc_odzywcze_sniadanie", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[0]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[0]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[0]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[0]) + "g", 9, 1, 0, 10);
+                Label nutritional_sniadanie = Helper.getLabel("wartosc_odzywcze_sniadanie", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[0]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[0]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[0]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[0]) + "g", 9, 2, 0, 10);
                 grid.Children.Add(nutritional_sniadanie);
 
                 Label IIsniadanie_tytul = Helper.getLabel("IIsniadanie_tytul", "II Śniadanie", 2, 2, 11, 10);
+                IIsniadanie_tytul.FontSize = 20;
                 grid.Children.Add(IIsniadanie_tytul);
 
                 IIsniadanie = Helper.getListBox(diet.dish_one_day[1], "IIsniadanie_posilki",4,5,11,10);
                 IIsniadanie.SelectionChanged += IIsniadanie_SelectionChanged;
+                IIsniadanie.Margin = new Thickness(3, 0, 3, 0);
                 grid.Children.Add(IIsniadanie);
 
-                Label nutritional_IIsniadanie = Helper.getLabel("wartosc_odzywcze_IIsniadanie", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[1]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[1]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[1]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[1]) + "g", 9, 1, 11, 10);
+                Label nutritional_IIsniadanie = Helper.getLabel("wartosc_odzywcze_IIsniadanie", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[1]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[1]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[1]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[1]) + "g", 9, 2, 11, 10);
                 grid.Children.Add(nutritional_IIsniadanie);
 
                 Label lunch_tytul = Helper.getLabel("lunch_tytul", "Lunch", 2, 2, 22, 10);
+                lunch_tytul.FontSize = 20;
                 grid.Children.Add(lunch_tytul);
 
                 lunch = Helper.getListBox(diet.dish_one_day[2], "lunch_posilki", 4, 5, 22, 10);
                 lunch.SelectionChanged += Lunch_SelectionChanged;
+                lunch.Margin = new Thickness(3, 0, 3, 0);
                 grid.Children.Add(lunch);
 
-                Label nutritional_lunch = Helper.getLabel("wartosc_odzywcze_lunch", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[2]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[2]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[2]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[2]) + "g", 9, 1, 22, 10);
+                Label nutritional_lunch = Helper.getLabel("wartosc_odzywcze_lunch", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[2]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[2]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[2]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[2]) + "g", 9, 2, 22, 10);
                 grid.Children.Add(nutritional_lunch);
 
                 Label obiad_tytul = Helper.getLabel("obiad_tytul", "Obiad", 10, 2, 0, 10);
+                obiad_tytul.FontSize = 20;
                 grid.Children.Add(obiad_tytul);
 
                 obiad = Helper.getListBox(diet.dish_one_day[3], "obiad_posilki", 12, 5, 0, 10);
                 obiad.SelectionChanged += Obiad_SelectionChanged;
+                obiad.Margin = new Thickness(3, 0, 3, 0);
                 grid.Children.Add(obiad);
 
-                Label nutritional_obiad = Helper.getLabel("wartosc_odzywcze_obiad", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[3]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[3]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[3]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[3]) + "g", 17, 1, 0, 10);
+                Label nutritional_obiad = Helper.getLabel("wartosc_odzywcze_obiad", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[3]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[3]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[3]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[3]) + "g", 17, 2, 0, 10);
                 grid.Children.Add(nutritional_obiad);
 
                 Label przekaska_tytul = Helper.getLabel("przekaska_tytul", "Przekąska", 10, 2, 11, 10);
+                przekaska_tytul.FontSize = 20;
                 grid.Children.Add(przekaska_tytul);
 
                 przekaska = Helper.getListBox(diet.dish_one_day[4], "przekaska_tytul", 12,5, 11, 10);
                 przekaska.SelectionChanged += Przekaska_SelectionChanged;
+                przekaska.Margin = new Thickness(3, 0, 3, 0);
                 grid.Children.Add(przekaska);
 
-                Label nutritional_przekaska = Helper.getLabel("wartosc_odzywcze_przekaska", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[4]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[4]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[4]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[4]) + "g", 17, 1, 11, 10);
+                Label nutritional_przekaska = Helper.getLabel("wartosc_odzywcze_przekaska", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[4]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[4]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[4]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[4]) + "g", 17, 2, 11, 10);
                 grid.Children.Add(nutritional_przekaska);
 
                 Label kolacja_tytul = Helper.getLabel("kolacja_tytul", "Kolacja", 10, 2, 22, 10);
+                kolacja_tytul.FontSize = 20;
                 grid.Children.Add(kolacja_tytul);
 
                 kolacja = Helper.getListBox(diet.dish_one_day[5], "kolacja_tytul", 12, 5, 22, 10);
                 kolacja.SelectionChanged += Kolacja_SelectionChanged;
+                kolacja.Margin = new Thickness(3, 0, 3, 0);
+                grid.Children.Add(kolacja);
 
-                Label nutritional_kolacja = Helper.getLabel("wartosc_odzywcze_kolacja", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[5]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[5]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[5]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[5]) + "g", 17, 1, 22, 10);
+                Label nutritional_kolacja = Helper.getLabel("wartosc_odzywcze_kolacja", "Kcal: " + string.Format("{0:.00}", diet.kcal_one_day[5]) + "   B: " + string.Format("{0:.00}", diet.protein_one_day[5]) + "   T: " + string.Format("{0:.00}", diet.fat_one_day[5]) + "   W: " + string.Format("{0:.00}", diet.carbs_one_day[5]) + "g", 17, 2, 22, 10);
                 grid.Children.Add(nutritional_kolacja);
 
-                grid.Children.Add(kolacja);
+                
             }
 
             return grid;
@@ -313,7 +336,6 @@ namespace FITAPP
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
-            grid.RowDefinitions.Add(new RowDefinition());
             for (int i = 0; i < 32; i++)
             {
                 ColumnDefinition column = new ColumnDefinition();

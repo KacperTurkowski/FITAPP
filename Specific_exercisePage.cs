@@ -24,13 +24,16 @@ namespace FITAPP
             Button back = new Helper().getBackButton(grid, parentpage, "back", 0, 2, 0, 2);
             grid.Children.Add(back);
 
-            Label tytul = Helper.getLabel("tytul",exercise.name,0,3,0,16);
+            Label tytul = Helper.getLabel("tytul",exercise.name,0,3,0,32);
+            tytul.FontSize = 30;
             grid.Children.Add(tytul);
 
             Label opis_cwiczenia = Helper.getLabel("opis_cwiczenia","Opis Ćwiczenia",3,2,0,16);
+            opis_cwiczenia.FontSize = 25;
             grid.Children.Add(opis_cwiczenia);
 
             ScrollViewer opis = Helper.getTextBlock("opis", exercise.description, 6, 11, 1, 14);
+            opis.FontSize = 16;
             grid.Children.Add(opis);
 
             Image image = new Image();
@@ -41,9 +44,9 @@ namespace FITAPP
             image.Source = bit;
 
             Grid.SetColumn(image,17);
-            Grid.SetRow(image, 1);
+            Grid.SetRow(image, 3);
             Grid.SetColumnSpan(image, 14);
-            Grid.SetRowSpan(image, 17);
+            Grid.SetRowSpan(image, 14);
             grid.Children.Add(image);
 
             return grid;
@@ -52,7 +55,6 @@ namespace FITAPP
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
-            grid.RowDefinitions.Add(new RowDefinition());
             for (int i = 0; i < 32; i++)
             {
                 ColumnDefinition column = new ColumnDefinition();

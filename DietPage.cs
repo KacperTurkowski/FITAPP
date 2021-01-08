@@ -23,14 +23,19 @@ namespace FITAPP
             this.grid = grid;
             //lewa strona
             dostepne_diety = Helper.getLabel("dostepne_diety", "Dostępne Diety", 0, 3, 0, 16);
+            dostepne_diety.FontSize = 25;
             grid.Children.Add(dostepne_diety);
 
             dodaj_diete = Helper.getButton("dodaj_diete", "Dodaj Dietę", 15, 2, 9, 6);
+            dodaj_diete.FontSize = 20;
             dodaj_diete.Click += Dodaj_Diete_Click;
             grid.Children.Add(dodaj_diete);
 
             searchDiets = Helper.getTextBox("wyszukaj_diete", "", 3, 2, 1, 14);
             searchDiets.TextChanged += SearchDiet_TextChanged;
+            searchDiets.FontSize = 18;
+            searchDiets.VerticalContentAlignment = VerticalAlignment.Center;
+            searchDiets.HorizontalContentAlignment = HorizontalAlignment.Center;
             grid.Children.Add(searchDiets);
 
             diets = DataBase.diets;
@@ -41,9 +46,11 @@ namespace FITAPP
             //prawwa strona
 
             moja_aktualna_dieta = Helper.getLabel("moja_aktualna_dieta", "Moja aktualna dieta", 0, 3, 16, 16);
+            moja_aktualna_dieta.FontSize = 25;
             grid.Children.Add(moja_aktualna_dieta);
 
             dzisiejsza_dieta = Helper.getTextBlock("dzisiejsza_dieta", "Dzisiejsza dieta", 3, 2, 16, 16);
+            dzisiejsza_dieta.FontSize = 20;
             dzisiejsza_dieta.PreviewMouseDown += Dzisiejsza_Dieta_PreviewMouseDown;
             dzisiejsza_dieta.HorizontalAlignment = HorizontalAlignment.Center;
             dzisiejsza_dieta.VerticalAlignment = VerticalAlignment.Center;
@@ -52,6 +59,7 @@ namespace FITAPP
             grid.Children.Add(dzisiejsza_dieta);
 
             nastepna_dieta = Helper.getTextBlock("nastepna_dieta", "Następna Dieta", 5, 2, 16, 16);
+            nastepna_dieta.FontSize = 20;
             nastepna_dieta.PreviewMouseDown += Nastepna_Dieta_PreviewMouseDown;
             nastepna_dieta.HorizontalAlignment = HorizontalAlignment.Center;
             nastepna_dieta.VerticalAlignment = VerticalAlignment.Center;
@@ -60,10 +68,12 @@ namespace FITAPP
             grid.Children.Add(nastepna_dieta);
 
             polubiona_dieta = Helper.getLabel("polubione_diety", "Polubione Diety", 7, 3, 16, 16);
+            polubiona_dieta.FontSize = 25;
             grid.Children.Add(polubiona_dieta);
 
             polubione_diety_listbox = Helper.getListBox(DataBase.likedDiets, "polubione_diety_listbox", 10, 8, 17, 14);
             polubione_diety_listbox.SelectionChanged += Polubione_diety_listbox_SelectionChanged;
+            polubione_diety_listbox.Margin = new Thickness(0, 0, 0, 3);
             grid.Children.Add(polubione_diety_listbox);
 
             return grid;
@@ -99,7 +109,7 @@ namespace FITAPP
                 //text
                 foreach (Diet x in diets)
                 {
-                    if (x.name.Equals(text))
+                    if (x.name.Contains(text))
                     {
                         temp.Add(x);
                     }
@@ -157,7 +167,6 @@ namespace FITAPP
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
-            grid.RowDefinitions.Add(new RowDefinition());
             for (int i = 0; i < 32; i++)
             {
                 ColumnDefinition column = new ColumnDefinition();

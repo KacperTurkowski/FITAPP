@@ -25,14 +25,19 @@ namespace FITAPP
             this.grid = grid;
             //lewa strona
             dostepne_treningi = Helper.getLabel("dostepne_treningi", "Dostępne Treningi", 0, 3, 0, 16);
+            dostepne_treningi.FontSize = 25;
             grid.Children.Add(dostepne_treningi);
 
             dodaj_trening = Helper.getButton("dodaj_trening", "Dodaj Trening", 15, 2, 9, 6);
+            dodaj_trening.FontSize = 20;
             dodaj_trening.Click += Dodaj_trening_Click;
             grid.Children.Add(dodaj_trening);
 
             searchTraining = Helper.getTextBox("wyszukaj_trening", "", 3, 2, 1, 14);
             searchTraining.TextChanged += SearchTraining_TextChanged;
+            searchTraining.FontSize = 18;
+            searchTraining.HorizontalContentAlignment = HorizontalAlignment.Center;
+            searchTraining.VerticalContentAlignment = VerticalAlignment.Center;
             grid.Children.Add(searchTraining);
 
             trainings = DataBase.trainings;
@@ -43,12 +48,14 @@ namespace FITAPP
             //prawwa strona
 
             moj_aktualny_trening = Helper.getLabel("moj_aktualny_trening", "Mój aktualny trening",0,3,16,16);
+            moj_aktualny_trening.FontSize = 25;
             grid.Children.Add(moj_aktualny_trening);
 
             dzisiejszy_trening = Helper.getTextBlock("dzisiejszy_trening", "Dzisiejszy trening", 3, 2, 16, 16);
             dzisiejszy_trening.PreviewMouseDown += Dzisiejszy_trening_PreviewMouseDown;
             dzisiejszy_trening.HorizontalAlignment = HorizontalAlignment.Center;
             dzisiejszy_trening.VerticalAlignment = VerticalAlignment.Center;
+            dzisiejszy_trening.FontSize = 20;
             TextBlock tb = (TextBlock)dzisiejszy_trening.Content;
             tb.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(dzisiejszy_trening);
@@ -56,16 +63,19 @@ namespace FITAPP
             nastepny_trening = Helper.getTextBlock("nastepny_trening", "Następny Trening", 5, 2, 16, 16);
             nastepny_trening.PreviewMouseDown += Nastepny_trening_PreviewMouseDown;
             nastepny_trening.HorizontalAlignment = HorizontalAlignment.Center;
+            nastepny_trening.FontSize = 20;
             nastepny_trening.VerticalAlignment = VerticalAlignment.Center;
             TextBlock tb1 = (TextBlock)nastepny_trening.Content;
             tb1.TextDecorations = TextDecorations.Underline;
             grid.Children.Add(nastepny_trening);
 
             polubione_treningi = Helper.getLabel("polubione_treningi", "Polubione Treningi", 7, 3, 16, 16);
+            polubione_treningi.FontSize = 25;
             grid.Children.Add(polubione_treningi);
 
-            polubione_treningi_listbox= Helper.getListBox(DataBase.likedTrainings, "polubione_trenigni_listbox", 10, 8, 17, 14);
+            polubione_treningi_listbox= Helper.getListBox(DataBase.likedTrainings, "polubione_trenigni_listbox", 10,7 , 17, 14);
             polubione_treningi_listbox.SelectionChanged += Polubione_treningi_listbox_SelectionChanged;
+            polubione_treningi.Margin = new Thickness(0, 0, 0, 3);
             grid.Children.Add(polubione_treningi_listbox);
 
             return grid;
@@ -101,7 +111,7 @@ namespace FITAPP
                 //text
                 foreach (Training x in trainings)
                 {
-                    if (x.name.Equals(text))
+                    if (x.name.Contains(text))
                     {
                         temp.Add(x);
                     }
@@ -159,7 +169,6 @@ namespace FITAPP
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
-            grid.RowDefinitions.Add(new RowDefinition());
             for (int i = 0; i < 32; i++)
             {
                 ColumnDefinition column = new ColumnDefinition();

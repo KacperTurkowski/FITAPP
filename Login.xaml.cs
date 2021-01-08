@@ -29,15 +29,15 @@ namespace FITAPP
 
         private void zaloguj_Click(object sender, RoutedEventArgs e)
         {
-            this.PassError.Content = "";
-            this.LoginError.Content = "";
+            this.Password.BorderBrush = Brushes.Gray;
+            this.LoginBox.BorderBrush = Brushes.Gray;
             string pass = "";
             if (DataBase.passwords.TryGetValue(this.LoginBox.Text, out pass))
             {
                 if (!this.Password.Password.Equals(pass))//nie wiem dlaczego tu jest zaprzeczenie
                 {
                     //złe hasło
-                    this.PassError.Content = "Błędne Hasło";
+                    this.Password.BorderBrush = Brushes.DarkRed;
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace FITAPP
             }
             else
             {
-                this.LoginError.Content = "Błędny Login";
+                this.LoginBox.BorderBrush = Brushes.DarkRed;
                 //zły login
             }
         }

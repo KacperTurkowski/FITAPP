@@ -26,18 +26,22 @@ namespace FITAPP
             grid.Children.Add(back);
 
             Label tytul = Helper.getLabel("tytul", dish.name, 0, 3, 0, 32);
+            tytul.FontSize = 30;
             grid.Children.Add(tytul);
 
             Label skladniki = Helper.getLabel("skladniki", "Składniki", 3, 2, 0, 16);
+            skladniki.FontSize = 25;
             grid.Children.Add(skladniki);
 
             ScrollViewer skladniki_list = Helper.getTextBlock("skladniki_list", dish.ingredients, 5, 4, 1, 14);
             grid.Children.Add(skladniki_list);
 
             Label przepis_label = Helper.getLabel("przepis_label", "Przepis", 10, 2, 1, 14);
+            przepis_label.FontSize = 25;
             grid.Children.Add(przepis_label);
 
             ScrollViewer przepis = Helper.getTextBlock("przepis",dish.recipe,13,4,1,14);
+
             grid.Children.Add(przepis);
 
             Image image = new Image();
@@ -46,9 +50,9 @@ namespace FITAPP
             bit.UriSource = new Uri(dish.image);
             bit.EndInit();
             image.Source = bit;
-
+            image.Margin = new Thickness(0, 0, 0, 5);
             Grid.SetColumn(image, 17);
-            Grid.SetRow(image, 2);
+            Grid.SetRow(image, 3);
             Grid.SetColumnSpan(image, 14);
             Grid.SetRowSpan(image, 17);
             grid.Children.Add(image);
@@ -58,7 +62,6 @@ namespace FITAPP
         public override Grid drawGrid(Grid grid)
         {
             Clear(grid);
-            grid.RowDefinitions.Add(new RowDefinition());
             for (int i = 0; i < 32; i++)
             {
                 ColumnDefinition column = new ColumnDefinition();
