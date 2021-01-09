@@ -57,6 +57,10 @@ namespace FITAPP
             grid.Children.Add(opis);
 
             Button dodaj_do_ulubionych = Helper.getButton("dodaj_do_ulubionych", "  Dodaj do\n ulubionych", 9, 2, 17, 6);
+            if (DataBase.likedDiets.Contains(diet))
+            {
+                dodaj_do_ulubionych.Content = "  Usuń z \n ulubionych";
+            }
             dodaj_do_ulubionych.FontSize = 16;
             dodaj_do_ulubionych.Click += Dodaj_do_ulubionych_Click;
             grid.Children.Add(dodaj_do_ulubionych);
@@ -78,6 +82,7 @@ namespace FITAPP
 
             zapisz_ocene = Helper.getButton("zapisz_ocene", "Oceń na _", 11,2,27,4);
             zapisz_ocene.Click += Zapisz_ocene_Click;
+            zapisz_ocene.Margin = new Thickness(0,2,0,2);
             zapisz_ocene.FontSize = 18;
             grid.Children.Add(zapisz_ocene);
 
@@ -134,7 +139,7 @@ namespace FITAPP
             if(grade.Value != 0)
             {
                 diet.grade = grade.Value;
-                MessageBox.Show("Dieta " + diet.name + " została oceniona na " + grade.Value);
+                MessageBox.Show("Dieta " + diet.name + " została oceniona na " + grade.Value,"Informacja",MessageBoxButton.OK,MessageBoxImage.Information);
             }
         }
 
@@ -150,13 +155,24 @@ namespace FITAPP
         private void Ustaw_jako_aktualna_diete_Click(object sender, RoutedEventArgs e)
         {
             DataBase.todayD = diet;
-            MessageBox.Show("Ustawiono " + diet.name + " jako aktualną dietę");
+            MessageBox.Show("Ustawiono " + diet.name + " jako aktualną dietę","Informacja",MessageBoxButton.OK,MessageBoxImage.Information);
         }
 
         private void Dodaj_do_ulubionych_Click(object sender, RoutedEventArgs e)
         {
-            DataBase.likedDiets.Add(diet);
-            MessageBox.Show("Dieta została dodana od ulubionych");
+            Button button = (Button)sender;
+            if (!DataBase.likedDiets.Contains(diet))
+            {
+                DataBase.likedDiets.Add(diet);
+                button.Content = "  Usuń z \n ulubionych";
+                MessageBox.Show("Dieta została dodana od ulubionych","Informacja",MessageBoxButton.OK,MessageBoxImage.Information);
+            }
+            else
+            {
+                DataBase.likedDiets.Remove(diet);
+                button.Content = "  Dodaj do\n ulubionych";
+                MessageBox.Show("Dieta została usunięta z ulubionych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         public override Grid drawGrid(Grid grid)

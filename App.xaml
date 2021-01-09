@@ -5,6 +5,6 @@
              
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="Oxygen">pack:C:\Users\Kacper\source\repos\FITAPP\OxygenMono-Regular</FontFamily>
     </Application.Resources>
 </Application>

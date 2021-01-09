@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FITAPP"
         mc:Ignorable="d"
-        Title="SetAsCurrentTraining" Height="457.606" Width="682.113">
+        Title="SetAsCurrentTraining" Background="LightGray" Height="457.606" Width="682.113">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

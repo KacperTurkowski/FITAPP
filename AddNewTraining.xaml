@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FITAPP"
         mc:Ignorable="d"
-        Title="Dodaj nowy trening" Height="500" Closing="Window_Closing"  Width="800">
+        Title="Dodaj nowy trening" Height="500" Background="LightGray" Closing="Window_Closing"  Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -70,7 +70,7 @@
         <TextBox Language="Poland" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="nazwa_treningu" Grid.Row="3" Grid.RowSpan="2" Grid.Column="22" Grid.ColumnSpan="9"/>
         <TabControl x:Name="lista_cwiczen" Grid.Row="5" Grid.RowSpan="13" Grid.Column="1" Grid.ColumnSpan="13"/>
         <Label FontSize="20" Content="Dodaj Opis Treningu" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="18"/>
-        <TextBox x:Name="opis_treningu" FontSize="14" Grid.Row="7" Grid.RowSpan="6" Grid.Column="15" Grid.ColumnSpan="16"/>
+        <TextBox x:Name="opis_treningu" TextWrapping="Wrap" FontSize="14" Grid.Row="7" Grid.RowSpan="6" Grid.Column="15" Grid.ColumnSpan="16"/>
         <Label FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Dodaj Tagi" Grid.Row="13" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="6"/>
         <ComboBox  Margin="2,7,2,7" VerticalContentAlignment="Center" x:Name="wybierz_tag" Grid.Row="13" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="6"/>
         <Button Click ="dodaj_tag_Click" Content="Dodaj" FontSize="20"  x:Name="dodaj_tag" Margin="5,5,5,5" Grid.Column="26" Grid.ColumnSpan="6" Grid.Row="13" Grid.RowSpan="2"/>

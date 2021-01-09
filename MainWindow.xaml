@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:FITAPP"
         mc:Ignorable="d"
         Icon="C:\Users\Kacper\source\repos\FITAPP\drzewo_widelec-removebg-preview.ico"
-        Title="FitnessApp" Height="600" Width="1000" Background="DarkOliveGreen" StateChanged="Window_StateChanged">
+        Title="FitnessApp" Height="600" Width="1000" Background="LightGray" WindowState="Maximized"  StateChanged="Window_StateChanged">
+
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.7*"/>

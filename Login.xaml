@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:FITAPP"
         mc:Ignorable="d"
         Icon="C:\Users\Kacper\source\repos\FITAPP\drzewo_widelec-removebg-preview.ico"
-        Title="Logowanie" Height="300" Width="400" Closing="Login_Closing" Background="DarkOliveGreen">
-    <Grid>
+        Title="Logowanie" Height="300" Width="400" Closing="Login_Closing" Background="LightGray">
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

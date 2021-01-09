@@ -25,6 +25,7 @@ namespace FITAPP
         static DataBase()//taki odpowiednik bloku statycznyego w Javie
         {
             passwords.Add("Kacper", "abc");
+            passwords.Add("Krystian", "Karczyński");
 
             exercises = new List<Exercise>();
 

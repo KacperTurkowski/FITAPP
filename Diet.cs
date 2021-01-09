@@ -84,7 +84,8 @@ namespace FITAPP
         }
         public override string ToString()
         {
-            return name +" ";
+            string result = String.Format("{0,-50} {1,-10}",name,average_grade);
+            return result;
         }
     }
 }

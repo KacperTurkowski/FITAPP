@@ -33,16 +33,27 @@ namespace FITAPP
             dodaj_trening.Click += Dodaj_trening_Click;
             grid.Children.Add(dodaj_trening);
 
-            searchTraining = Helper.getTextBox("wyszukaj_trening", "", 3, 2, 1, 14);
+            searchTraining = Helper.getTextBox("wyszukaj_trening", "Wyszukaj", 3, 2, 1, 14);
             searchTraining.TextChanged += SearchTraining_TextChanged;
+            searchTraining.PreviewMouseDown += SearchTraining_PreviewMouseDown;
             searchTraining.FontSize = 18;
             searchTraining.HorizontalContentAlignment = HorizontalAlignment.Center;
             searchTraining.VerticalContentAlignment = VerticalAlignment.Center;
             grid.Children.Add(searchTraining);
 
+            String temp = String.Format("{0,-40} {1,10}", "Nazwa Treningu", "Śr. Ocen");
+            Label label = Helper.getLabel("objasnienie", temp, 5, 2, 1, 14);
+            label.HorizontalContentAlignment = HorizontalAlignment.Center;
+            label.FontSize = 15;
+            label.VerticalAlignment = VerticalAlignment.Bottom;
+            label.FontFamily = new System.Windows.Media.FontFamily("Consolas");
+            grid.Children.Add(label);
+
             trainings = DataBase.trainings;
-            treningi = Helper.getListBox(trainings, "exercises", 5, 9, 1, 14);
+            treningi = Helper.getListBox(trainings, "exercises", 7, 7, 1, 14);
             treningi.SelectionChanged += Treningi_SelectionChanged;
+            treningi.FontSize = 15;
+            treningi.FontFamily = new System.Windows.Media.FontFamily("Consolas");
             grid.Children.Add(treningi);
 
             //prawwa strona
@@ -73,12 +84,27 @@ namespace FITAPP
             polubione_treningi.FontSize = 25;
             grid.Children.Add(polubione_treningi);
 
-            polubione_treningi_listbox= Helper.getListBox(DataBase.likedTrainings, "polubione_trenigni_listbox", 10,7 , 17, 14);
+            Label label2 = Helper.getLabel("objasnienie", temp, 10, 2, 17, 14);
+            label2.HorizontalContentAlignment = HorizontalAlignment.Center;
+            label2.FontSize = 15;
+            label2.VerticalAlignment = VerticalAlignment.Bottom;
+            label2.FontFamily = new System.Windows.Media.FontFamily("Consolas");
+            grid.Children.Add(label2);
+
+            polubione_treningi_listbox = Helper.getListBox(DataBase.likedTrainings, "polubione_trenigni_listbox", 12,5 , 17, 14);
             polubione_treningi_listbox.SelectionChanged += Polubione_treningi_listbox_SelectionChanged;
-            polubione_treningi.Margin = new Thickness(0, 0, 0, 3);
+            polubione_treningi_listbox.Margin = new Thickness(0, 0, 0, 3);
+            polubione_treningi_listbox.FontSize = 15;
+            polubione_treningi_listbox.FontFamily = new System.Windows.Media.FontFamily("Consolas");
             grid.Children.Add(polubione_treningi_listbox);
 
             return grid;
+        }
+
+        private void SearchTraining_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = "";
         }
 
         private void SearchTraining_TextChanged(object sender, TextChangedEventArgs e)

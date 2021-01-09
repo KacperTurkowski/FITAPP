@@ -58,15 +58,18 @@ namespace FITAPP
             this.pasekPostepu.Maximum = 4;
             this.pasekPostepu.Minimum = 0;
             this.pasekPostepu.Value = 1;
-            Label question = Helper.getLabel("question", "Chcesz utworzyć dietę jednodniową czy tygodniową", 0, 12, 0, 32);
+            Label question = Helper.getLabel("question", "Chcesz utworzyć dietę jednodniową czy tygodniową?", 0, 12, 0, 32);
+            question.FontSize = 30;
             this.grid.Children.Add(question);
 
             Button jednodniowa = Helper.getButton("jednodniowa", "Jednodniowa", 16, 4, 5, 6);
             jednodniowa.Click += Jednodniowa_Click;
+            jednodniowa.FontSize = 20;
             this.grid.Children.Add(jednodniowa);
 
             Button tygodniowa = Helper.getButton("tygodniowa", "Tygodniowa", 16, 4, 21, 6);
             tygodniowa.Click += Tygodniowa_Click;
+            tygodniowa.FontSize = 20;
             this.grid.Children.Add(tygodniowa);
         }
         private void Tygodniowa_Click(object sender, RoutedEventArgs e)
@@ -106,6 +109,7 @@ namespace FITAPP
             grid = drawGrid(grid);
 
             Label day = Helper.getLabel("title", title, 0, 3, 0, 20);
+            day.FontSize = 30;
             grid.Children.Add(day);
             //tu te wszystkie labele
             string[] time_of_day = { "Śniadanie", "IIŚniadanie", "Lunch", "Obiad", "Przekąska", "Kolacja" };
@@ -113,14 +117,20 @@ namespace FITAPP
             for(int i = 0; i < 6; i++)
             {
                 Label x = Helper.getLabel("label" + i, time_of_day[i], 3 + 3 * i, 3, 0, 6);
+                x.FontSize = 20;
                 grid.Children.Add(x);
             }
 
             Label kcal_title, protein_title, carbs_title, fat_title;
             kcal_title = Helper.getLabel("kcal_title", "Kcal", 0, 3, 20, 3);
+            kcal_title.FontSize = 15;
             protein_title = Helper.getLabel("protein_title", "Białka", 0, 3, 23, 3);
+            protein_title.FontSize = 15;
             fat_title = Helper.getLabel("fat_title", "Tłuszcze", 0, 3, 26, 3);
-            carbs_title = Helper.getLabel("carbs_title", "Węglowodany", 0, 3, 29, 3);
+            fat_title.FontSize = 15;
+            carbs_title = Helper.getLabel("carbs_title", "Węglowodany", 0, 3, 29, 4);
+            carbs_title.HorizontalContentAlignment = HorizontalAlignment.Center;
+            carbs_title.FontSize = 15;
             grid.Children.Add(kcal_title);
             grid.Children.Add(protein_title);
             grid.Children.Add(fat_title);
@@ -134,6 +144,7 @@ namespace FITAPP
                     nutri[i, j].HorizontalContentAlignment = HorizontalAlignment.Center;
                     nutri[i, j].VerticalContentAlignment = VerticalAlignment.Center;
                     nutri[i, j].Content = 0.0;
+                    nutri[i, j].FontSize = 15;
                     Grid.SetColumn(nutri[i, j],20+j*3);
                     Grid.SetRow(nutri[i, j], 3 + 3 * i);
                     Grid.SetColumnSpan(nutri[i, j], 3);
@@ -147,6 +158,7 @@ namespace FITAPP
             for(int i = 0; i < 6; i++)
             {
                 ListBox listbox = new ListBox();
+                listbox.Margin = new Thickness(0, 2, 0, 2);
                 listbox.Name = "_" + i + "_";
                 listbox.SelectionChanged += Listbox_SelectionChanged;
                 listbox.PreviewMouseRightButtonDown += Delete_dish;
@@ -162,11 +174,13 @@ namespace FITAPP
             Button back = Helper.getButton("wroc", "Wróć", 22, 2, 0, 6);
             back.Margin = new Thickness(5);
             back.Click += Back_Click;
+            back.FontSize = 20;
             grid.Children.Add(back);
 
             Button next = Helper.getButton("dalej", "Dalej", 22, 2, 26, 6);
             next.Margin = new Thickness(5);
             next.Click += Next_Click;
+            next.FontSize = 20;
             grid.Children.Add(next);
 
         }
@@ -179,12 +193,18 @@ namespace FITAPP
             this.pasekPostepu.Value = 3;
 
             Label label = Helper.getLabel("title", "Podaj nazwę diety", 0, 3, 4, 24);
+            label.FontSize = 30;
             grid.Children.Add(label);
 
-            dietName = Helper.getTextBox("tytul", "", 3, 2, 10, 12);
+            dietName = Helper.getTextBox("tytul", "Nazwa", 3, 2, 10, 12);
+            dietName.FontSize = 17;
+            dietName.VerticalContentAlignment = VerticalAlignment.Center;
+            dietName.HorizontalContentAlignment = HorizontalAlignment.Center;
+            dietName.PreviewMouseDown += DietName_PreviewMouseDown;
             grid.Children.Add(dietName);
             
             Label label2 = Helper.getLabel("tagi", "Wybierz tagi", 5, 3, 4, 24);
+            label2.FontSize = 30;
             grid.Children.Add(label2);
 
             ComboBox comboBox = new ComboBox();
@@ -193,12 +213,15 @@ namespace FITAPP
             Grid.SetColumnSpan(comboBox, 18);
             Grid.SetRowSpan(comboBox, 2);
             comboBox.SelectionChanged += ComboBox_SelectionChanged;
+            comboBox.FontSize = 20;
+            comboBox.VerticalContentAlignment = VerticalAlignment.Center;
             comboBox.ItemsSource = DataBase.dietTags;
             grid.Children.Add(comboBox);
 
             ScrollViewer scrollViewer = new ScrollViewer();
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             scrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            scrollViewer.FontSize = 15;
             Grid.SetColumn(scrollViewer, 4);
             Grid.SetRow(scrollViewer, 11);
             Grid.SetColumnSpan(scrollViewer, 24);
@@ -209,12 +232,19 @@ namespace FITAPP
 
             Button button = Helper.getButton("koniec", "Dodaj Dietę", 20, 3, 10, 12);
             button.Click += Button_Click;
+            button.FontSize = 20;
             grid.Children.Add(button);
+        }
+
+        private void DietName_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = "";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (dietName.Text != "")
+            if (!dietName.Text.Equals("") && !dietName.Text.Equals("Nazwa"))
             {
                 if (manydays)
                 {
@@ -231,7 +261,7 @@ namespace FITAPP
                 this.Close();
             }
             else
-                System.Windows.MessageBox.Show("Dieta musi mieć nazwę");
+                System.Windows.MessageBox.Show("Dieta musi mieć nazwę","Błąd",MessageBoxButton.OK,MessageBoxImage.Error);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -300,22 +330,35 @@ namespace FITAPP
                         int row = 3 + 3 * time_of_day;
                         Label kcal = (Label)grid.Children.Cast<UIElement>()
                             .First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == 20);
-                        double tempN = (double)kcal.Content - dish.kcal * amount;
+                        double tempN = 0.0;
+                        if (listBox.Items.Count == 1)
+                            tempN = 0.0;
+                        else 
+                            tempN = (double)kcal.Content - dish.kcal * amount;
                         kcal.Content = tempN;
 
                         Label protein = (Label)grid.Children.Cast<UIElement>()
                             .First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == 23);
-                        tempN = (double)protein.Content - dish.protein * amount;
+                        if (listBox.Items.Count == 1)
+                            tempN = 0.0;
+                        else 
+                            tempN = (double)protein.Content - dish.protein * amount;
                         protein.Content = tempN;
 
                         Label fat = (Label)grid.Children.Cast<UIElement>()
                             .First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == 26);
-                        tempN = (double)fat.Content - dish.fat * amount;
+                        if (listBox.Items.Count == 1)
+                            tempN = 0.0;
+                        else 
+                            tempN = (double)fat.Content - dish.fat * amount;
                         fat.Content = tempN;
 
                         Label carbs = (Label)grid.Children.Cast<UIElement>()
                             .First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == 29);
-                        tempN = (double)carbs.Content - dish.carbs * amount;
+                        if (listBox.Items.Count == 1)
+                            tempN = 0.0;
+                        else
+                            tempN = (double)carbs.Content - dish.carbs * amount;
                         carbs.Content = tempN;
                     }
                     else
@@ -337,22 +380,43 @@ namespace FITAPP
                         int row = 3 + 3 * time_of_day;
                         Label kcal = (Label)grid.Children.Cast<UIElement>()
                             .First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == 20);
-                        double tempN = (double)kcal.Content - dish.kcal * amount;
+                        double tempN;
+                        if(listBox.Items.Count == 1)
+                        {
+                            tempN = 0.0;
+                        }
+                        else
+                        {
+                            tempN = (double)kcal.Content - dish.kcal * amount;
+                        }
                         kcal.Content = tempN;
 
                         Label protein = (Label)grid.Children.Cast<UIElement>()
                             .First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == 23);
-                        tempN = (double)protein.Content - dish.protein * amount;
+                        if(listBox.Items.Count == 1)
+                        {
+                            tempN = 0.0;
+                        }
+                        else
+                        {
+                            tempN = (double)protein.Content - dish.protein * amount;
+                        }
                         protein.Content = tempN;
 
                         Label fat = (Label)grid.Children.Cast<UIElement>()
                             .First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == 26);
-                        tempN = (double)fat.Content - dish.fat * amount;
+                        if (listBox.Items.Count == 1)
+                            tempN = 0.0;
+                        else
+                            tempN = (double)fat.Content - dish.fat * amount;
                         fat.Content = tempN;
 
                         Label carbs = (Label)grid.Children.Cast<UIElement>()
                             .First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == 29);
-                        tempN = (double)carbs.Content - dish.carbs * amount;
+                        if (listBox.Items.Count == 1)
+                            tempN = 0.0;
+                        else
+                            tempN = (double)carbs.Content - dish.carbs * amount;
                         carbs.Content = tempN;
                     }
                 }
@@ -405,12 +469,12 @@ namespace FITAPP
 
             if (doubleUpDown.Value <= 0)
             {
-                System.Windows.MessageBox.Show("Podana ilość jest za mała");
+                System.Windows.MessageBox.Show("Podana ilość jest za mała", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if( comboBox.SelectedIndex == -1)
             {
-                System.Windows.MessageBox.Show("Wybierz posiłek");
+                System.Windows.MessageBox.Show("Wybierz posiłek","Błąd",MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
             Dish dish = (Dish)comboBox.SelectedItem;

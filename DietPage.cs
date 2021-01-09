@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,16 +32,28 @@ namespace FITAPP
             dodaj_diete.Click += Dodaj_Diete_Click;
             grid.Children.Add(dodaj_diete);
 
-            searchDiets = Helper.getTextBox("wyszukaj_diete", "", 3, 2, 1, 14);
+            searchDiets = Helper.getTextBox("wyszukaj_diete", "Wyszukaj", 3, 2, 1, 14);
             searchDiets.TextChanged += SearchDiet_TextChanged;
+            searchDiets.PreviewMouseDown += SearchDiets_PreviewMouseDown;
             searchDiets.FontSize = 18;
             searchDiets.VerticalContentAlignment = VerticalAlignment.Center;
             searchDiets.HorizontalContentAlignment = HorizontalAlignment.Center;
             grid.Children.Add(searchDiets);
 
+            String temp = String.Format("{0,-40} {1,10}", "Nazwa Diety", "Sr. Ocen");
+            Label label = Helper.getLabel("objasnienie", temp, 5, 2, 1, 14);
+            label.HorizontalContentAlignment = HorizontalAlignment.Center;
+            label.FontSize = 15;
+            label.VerticalAlignment = VerticalAlignment.Bottom;
+            label.FontFamily = new System.Windows.Media.FontFamily("Consolas");
+            grid.Children.Add(label);
+
             diets = DataBase.diets;
-            diety = Helper.getListBox(diets, "diets", 5, 9, 1, 14);
+            diety = Helper.getListBox(diets, "diets", 7, 7, 1, 14);
             diety.SelectionChanged += Diety_SelectionChanged;
+            diety.FontSize = 15;
+            diety.FontFamily = new System.Windows.Media.FontFamily("Consolas");
+
             grid.Children.Add(diety);
 
             //prawwa strona
@@ -71,14 +84,28 @@ namespace FITAPP
             polubiona_dieta.FontSize = 25;
             grid.Children.Add(polubiona_dieta);
 
-            polubione_diety_listbox = Helper.getListBox(DataBase.likedDiets, "polubione_diety_listbox", 10, 8, 17, 14);
+            Label label2 = Helper.getLabel("objasnienie", temp, 10, 2, 17, 14);
+            label2.HorizontalContentAlignment = HorizontalAlignment.Center;
+            label2.FontSize = 15;
+            label2.VerticalAlignment = VerticalAlignment.Bottom;
+            label2.FontFamily = new System.Windows.Media.FontFamily("Consolas");
+            grid.Children.Add(label2);
+
+            polubione_diety_listbox = Helper.getListBox(DataBase.likedDiets, "polubione_diety_listbox", 12, 6, 17, 14);
             polubione_diety_listbox.SelectionChanged += Polubione_diety_listbox_SelectionChanged;
             polubione_diety_listbox.Margin = new Thickness(0, 0, 0, 3);
+            polubione_diety_listbox.FontSize = 15;
+            polubione_diety_listbox.FontFamily = new System.Windows.Media.FontFamily("Consolas");
             grid.Children.Add(polubione_diety_listbox);
 
             return grid;
         }
 
+        private void SearchDiets_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = "";
+        }
         private void SearchDiet_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (this.searchDiets.Text == "")

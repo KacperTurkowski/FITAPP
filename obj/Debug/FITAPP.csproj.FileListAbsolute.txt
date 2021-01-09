@@ -38,3 +38,4 @@ C:\Users\Kacper\source\repos\FITAPP\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.
 C:\Users\Kacper\source\repos\FITAPP\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Kacper\source\repos\FITAPP\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Kacper\source\repos\FITAPP\obj\Debug\FITAPP.csproj.CopyComplete
+C:\Users\Kacper\source\repos\FITAPP\obj\Debug\App.baml

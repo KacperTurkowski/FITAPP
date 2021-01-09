@@ -52,6 +52,10 @@ namespace FITAPP
             Button dodaj_do_ulubionych = Helper.getButton("dodaj_do_ulubionych", "  Dodaj do\n ulubionych", 9, 2, 17, 6);
             dodaj_do_ulubionych.FontSize = 16;
             dodaj_do_ulubionych.Click += Dodaj_do_ulubionych_Click;
+            if (DataBase.likedTrainings.Contains(training))
+            {
+                dodaj_do_ulubionych.Content = "  Usuń z \n ulubionych";
+            }
             grid.Children.Add(dodaj_do_ulubionych);
 
             Button ustaw_jako_aktualny_trening = Helper.getButton("ustaw_jako_aktualny_trening", "Ustaw jako aktualny\n          trening", 9, 2, 25, 6);
@@ -70,6 +74,7 @@ namespace FITAPP
 
             zapisz_ocene = Helper.getButton("zapisz_ocene", "Oceń na _", 11, 2, 27, 4);
             zapisz_ocene.FontSize = 18;
+            zapisz_ocene.Margin = new Thickness(0, 2, 0, 2);
             zapisz_ocene.Click += Zapisz_ocene_Click;
             grid.Children.Add(zapisz_ocene);
 
@@ -118,7 +123,7 @@ namespace FITAPP
             if (grade.Value != 0)
             {
                 training.grade = grade.Value;
-                MessageBox.Show("Dieta " + training.name + " została oceniona na " + grade.Value);
+                MessageBox.Show("Dieta " + training.name + " została oceniona na " + grade.Value,"Informacja",MessageBoxButton.OK,MessageBoxImage.Information);
             }
         }
         private void Grade_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -140,13 +145,24 @@ namespace FITAPP
             else
             {
                 DataBase.todayT = training;
-                MessageBox.Show("Ustawiono " + training.name + " jako aktualny trening");
+                MessageBox.Show("Ustawiono " + training.name + " jako aktualny trening","Informacje",MessageBoxButton.OK,MessageBoxImage.Information);
             }
         }
         private void Dodaj_do_ulubionych_Click(object sender, RoutedEventArgs e)
         {
-            DataBase.likedTrainings.Add(training);
-            MessageBox.Show("Trening został dodany od ulubionych");
+            Button button = (Button)sender;
+            if (!DataBase.likedTrainings.Contains(training))
+            {
+                DataBase.likedTrainings.Add(training);
+                button.Content = "  Usuń z \n ulubionych";
+                MessageBox.Show("Trening został dodany od ulubionych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                DataBase.likedTrainings.Remove(training);
+                button.Content = "  Dodaj do\n ulubionych";
+                MessageBox.Show("Trening został usunięty z ulubionych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
         public override Grid drawGrid(Grid grid)
         {

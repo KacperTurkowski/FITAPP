@@ -45,7 +45,7 @@ namespace FITAPP
                 if (b) check = true;
 
             if (!check)
-                MessageBox.Show("Nie wybrano żadnego dnia treningowego");
+                MessageBox.Show("Nie wybrano żadnego dnia treningowego","Błąd",MessageBoxButton.OK,MessageBoxImage.Error);
             else
             {
                 DateTime date;
@@ -55,7 +55,7 @@ namespace FITAPP
                 }catch(InvalidOperationException)
                 {
                     date = DateTime.Now;
-                    MessageBox.Show("Nie wybrano daty\n Ustalono datę na dzisiejszą");//ustawia datę na dzisiejszą
+                    MessageBox.Show("Nie wybrano daty\n Ustalono datę na dzisiejszą","Informacja",MessageBoxButton.OK,MessageBoxImage.Information);//ustawia datę na dzisiejszą
                 }
                 
                 if (date.ToString().Substring(0,10).Equals(DateTime.Now.ToString().Substring(0, 10)))//jeśli data ustalona to data dzisiejsza
@@ -63,15 +63,17 @@ namespace FITAPP
 
                     //czy dzień tyogdnia wybranej daty zgadza się z dniem treningowym                    
                     int a = (int)DateTime.Now.DayOfWeek;
-                    if(days[(int)DateTime.Now.DayOfWeek])
+                    if(days[(int)DateTime.Now.DayOfWeek-1])
                     {
-                        DataBase.todayT = training;
-                        DataBase.todayT.exercises = new List<Exercise>();
-                    }
-                    else//Dzień tygodnia zgadza się
-                    {
+                        MessageBox.Show("a");
                         DataBase.todayT = training;
                         DataBase.todayT.exercises = training.exercisesD[0];
+                    }
+                    else//Dzień tygodnia nie zgadza się
+                    {
+                        MessageBox.Show("b");
+                        DataBase.todayT = training;
+                        DataBase.todayT.exercises = new List<Exercise>();
                     }
                 }
                 else

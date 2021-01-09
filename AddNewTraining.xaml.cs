@@ -163,12 +163,12 @@ namespace FITAPP
             }
             catch (Exception)
             {
-                System.Windows.MessageBox.Show("Nie wybrano ćwiczenia");
+                System.Windows.MessageBox.Show("Nie wybrano ćwiczenia","Błąd",MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
             if (integerUpDown.Value <= 0)
             {
-                System.Windows.MessageBox.Show("Zła ilość powtórzeń");
+                System.Windows.MessageBox.Show("Zła ilość powtórzeń","Błąd",MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
             int amount = (int)integerUpDown.Value;
@@ -222,7 +222,7 @@ namespace FITAPP
                 {
                     if (training.name.Equals(nazwa_treningu.Text))
                     {
-                        System.Windows.MessageBox.Show("Trening o tej nazwie został już utworzony");
+                        System.Windows.MessageBox.Show("Trening o tej nazwie został już utworzony","Error",MessageBoxButton.OK,MessageBoxImage.Error);
                         return;
                     }
                 }
@@ -236,7 +236,7 @@ namespace FITAPP
                 }
                 if (count == 0)//wszystkie dni nie mają treningów
                 {
-                    System.Windows.MessageBox.Show("Nie dodano ćwiczeń");
+                    System.Windows.MessageBox.Show("Nie dodano ćwiczeń", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 else if (count == 1)//trening jednodniowy
@@ -283,7 +283,7 @@ namespace FITAPP
             }
             else
             {
-                System.Windows.MessageBox.Show("Musisz podać nazwę treningu");
+                System.Windows.MessageBox.Show("Musisz podać nazwę treningu", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             this.Close();
