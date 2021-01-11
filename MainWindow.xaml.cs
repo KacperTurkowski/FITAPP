@@ -27,8 +27,8 @@ namespace FITAPP
         {
             //Najpierw należy się zalogować
             Login oknoLogowania = new Login(this);
-            
-            oknoLogowania.Show();
+            oknoLogowania.Activate();
+            //oknoLogowania.Show();
             this.Hide();
             //po wpisanniu loginu i hasła main się pokaże
             InitializeComponent();

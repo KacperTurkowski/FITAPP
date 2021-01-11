@@ -46,6 +46,7 @@ namespace FITAPP
 
             TabItem last = new TabItem();
             last.Header = "+";
+            last.FontSize = 20;
             lista_cwiczen.Items.Add(last);
 
             createNewDay();//tworzę dzień pierwszy

@@ -78,6 +78,7 @@ namespace FITAPP
 
             manydays = true;
             tabControl = new TabControl();
+            tabControl.Background = Brushes.LightGray;
             Grid.SetColumn(tabControl, 0);
             Grid.SetRow(tabControl, 0);
             Grid.SetColumnSpan(tabControl, 32);
@@ -92,6 +93,7 @@ namespace FITAPP
                 gridInTab = drawGrid(gridInTab);
                 drawComponents(gridInTab,days[i]);
                 TabItem item = new TabItem();
+                item.Background = Brushes.LightGray;
                 item.Content = gridInTab;
                 item.Header = days[i];
                 tabControl.Items.Add(item);

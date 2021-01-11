@@ -25,6 +25,7 @@ namespace FITAPP
         {
             this.Main = parent;
             InitializeComponent();
+            this.Show();
         }
 
         private void zaloguj_Click(object sender, RoutedEventArgs e)
@@ -43,7 +44,7 @@ namespace FITAPP
                 {
                     //dobre hasło
                     this.Main.Show();
-
+                    this.Main.Activate();
                     this.Close();
                 }
             }
